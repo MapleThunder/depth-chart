@@ -1,11 +1,14 @@
 import { render } from "react-dom";
+import { DepthChart } from "./components/DepthChart";
+import { Header } from "./components/Header";
 import "./styles/base.scss";
 
 function App() {
   return (
-    <div>
-      <h1>Ola Mundo !</h1>
-    </div>
+    <>
+      <Header />
+      <DepthChart />
+    </>
   );
 }
 

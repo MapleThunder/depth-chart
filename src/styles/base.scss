@@ -7,11 +7,14 @@
   --yellow: #fcf780;
   --blue: #65e5e1;
   --purple: #8e5c7f;
+  --green: #1aa420;
 
   --background: var(--grey);
+  --primary: var(--purple);
+  --pitch: var(--green);
 
-  --debugBorder: dashed 1px red;
-  --borderRadius: 20px;
+  --debug: dashed 1px red;
+  --br: 7px;
 }
 
 html,
