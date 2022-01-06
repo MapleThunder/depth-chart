@@ -9,6 +9,11 @@ export default {
       type: "string",
     },
     {
+      title: "Kit Name",
+      name: "kit_name",
+      type: "string",
+    },
+    {
       title: "Kit Number",
       name: "kit_number",
       type: "number",

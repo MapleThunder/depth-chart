@@ -5,17 +5,17 @@ export const boxes = [
     position: "STK",
   },
   {
-    label: "Left Attacking Mid",
+    label: "Left Wing",
     classes: "left a-mid",
     position: "LAM",
   },
   {
-    label: "Centre Attacking Mid",
+    label: "Centre Att-Mid",
     classes: "centre a-mid",
     position: "CAM",
   },
   {
-    label: "Right Attacking Mid",
+    label: "Right Wing",
     classes: "right a-mid",
     position: "RAM",
   },

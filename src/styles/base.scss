@@ -13,12 +13,13 @@
   --background: var(--grey);
   --primary: var(--purple);
   --pitch: var(--green);
-  --good: var(--green);
-  --okay: var(--yellow);
-  --bad: red;
+  --good: rgb(60, 232, 69);
+  --okay: rgba(252, 247, 128);
+  --bad: rgb(240, 71, 71);
 
   --debug: dashed 1px red;
   --br: 7px;
+  --bs: 0 3px 10px var(--black);
 }
 
 html,

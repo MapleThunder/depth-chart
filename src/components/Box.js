@@ -7,6 +7,7 @@ const BoxStyles = styled.div`
   border-radius: var(--br);
   text-align: center;
   padding: 5px 10px;
+  background-color: var(--background);
 
   .box-label-wrapper {
     display: flex;
@@ -54,7 +55,7 @@ export function Box({ details, players }) {
       </div>
       <ul>
         {filtered.map((player, i) => (
-          <li key={i}>{player.name}</li>
+          <li key={i}>{player.kit_name}</li>
         ))}
       </ul>
     </BoxStyles>
