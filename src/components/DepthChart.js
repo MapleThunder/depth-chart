@@ -1,27 +1,29 @@
+import { useState, useEffect } from "react";
 import styled from "@emotion/styled";
+import sanityClient from "../client.js";
+import { boxes } from "../data/boxes";
+import { Box } from "./Box.js";
 
 export function DepthChart() {
+  const [players, setPlayers] = useState(null);
+
+  useEffect(() => {
+    sanityClient
+      .fetch(
+        `*[_type == "player"]{
+      name,
+      kit_number,
+      positions
+    }`
+      )
+      .then((data) => setPlayers(data));
+  }, []);
+
+  if (players == null) return <p>Loading...</p>;
   return (
     <ChartStyles>
-      <div className="striker">Test</div>
-
-      <div className="left a-mid">Test</div>
-      <div className="centre a-mid">Test</div>
-      <div className="right a-mid">Test</div>
-
-      <div className="left mid">Test</div>
-      <div className="centre mid">Test</div>
-      <div className="right mid">Test</div>
-
-      <div className="left d-mid">Test</div>
-      <div className="centre d-mid">Test</div>
-      <div className="right d-mid">Test</div>
-
-      <div className="left def">Test</div>
-      <div className="centre def">Test</div>
-      <div className="right def">Test</div>
-
-      <div className="keeper">Test</div>
+      {boxes &&
+        boxes.map((box, i) => <Box details={box} players={players} key={i} />)}
     </ChartStyles>
   );
 }
@@ -35,13 +37,6 @@ const ChartStyles = styled.div`
   max-width: 900px;
   background-color: var(--pitch);
   padding: 20px 10px;
-
-  div {
-    border: 2px solid var(--black);
-    border-radius: var(--br);
-    text-align: center;
-    padding: 5px;
-  }
 
   .striker {
     grid-column: 2/3;

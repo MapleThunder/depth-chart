@@ -1,9 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 :root {
+  --white: #fff;
   --black: #222222;
   --grey: #cccccc;
-  --greyDark: #444;
+  --greyDark: #444444;
   --yellow: #fcf780;
   --blue: #65e5e1;
   --purple: #8e5c7f;
@@ -12,6 +13,9 @@
   --background: var(--grey);
   --primary: var(--purple);
   --pitch: var(--green);
+  --good: var(--green);
+  --okay: var(--yellow);
+  --bad: red;
 
   --debug: dashed 1px red;
   --br: 7px;
