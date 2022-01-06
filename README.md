@@ -1,3 +1,3 @@
-# Maple React Starter
+# Depth Chart
 
-This is a starter kit to make it easier for me to start React sites without using create-react-app.
+An app to make it easier to visualize the depth of a football club's squad.
