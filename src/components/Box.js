@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { ListItem } from "./ListItem";
 
 const BoxStyles = styled.div`
   display: flex;
@@ -56,11 +57,13 @@ export function Box({ details, players }) {
         <span className="box-label">{details.label}</span>
         <div className="count-pill">{filtered.length}</div>
       </div>
-      <ul>
-        {filtered.map((player, i) => (
-          <li key={i}>{player.kit_name}</li>
-        ))}
-      </ul>
+      <div className="box-list-wrapper">
+        <ul>
+          {filtered.map((player, i) => (
+            <ListItem key={i} player={player} />
+          ))}
+        </ul>
+      </div>
     </BoxStyles>
   );
 }
