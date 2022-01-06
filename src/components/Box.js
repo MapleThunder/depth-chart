@@ -14,19 +14,21 @@ const BoxStyles = styled.div`
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid var(--black);
-    margin-bottom: 5px;
-    padding-bottom: 5px;
+    border-radius: var(--br) var(--br) 0 0;
+    padding: 5px 10px;
+    margin: -5px -10px 5px -10px;
+    background-color: var(${(props) => props.filteredClass});
 
     .box-label {
       font-weight: 700;
       font-size: 1.2rem;
     }
     .count-pill {
-      background-color: var(${(props) => props.filteredClass});
       padding: 2px 5px;
       border-radius: 7px;
       margin-left: 10px;
       border: 1px solid var(--black);
+      box-shadow: var(--bs-small);
     }
   }
 `;
