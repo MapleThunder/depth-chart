@@ -40,8 +40,8 @@ export function Box({ details, players }) {
 
   function getFilteredClass(num) {
     let colour = "--bad";
-    if (num >= 2) colour = "--good";
-    else if (num > 0) colour = "--okay";
+    if (num >= details.limits.good) colour = "--good";
+    else if (num >= details.limits.okay) colour = "--okay";
 
     return colour;
   }
