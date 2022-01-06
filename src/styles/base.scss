@@ -19,7 +19,7 @@
 
   --debug: dashed 1px red;
   --br: 7px;
-  --bs: 0 3px 10px var(--black);
+  --bs: 0 3px 6px var(--black);
   --bs-small: 1px 1px 2px var(--black);
 }
 
@@ -32,6 +32,7 @@ body,
 
 body {
   font-family: Nunito, Verdana, Geneva, Tahoma, sans-serif;
+  background-color: var(--pitch);
 }
 
 h1 {
@@ -42,4 +43,9 @@ h1 {
 h2 {
   font-size: 1.5em;
   font-weight: bold;
+}
+
+main {
+  display: flex;
+  justify-content: center;
 }

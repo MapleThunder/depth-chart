@@ -30,15 +30,12 @@ export function DepthChart() {
 }
 
 const ChartStyles = styled.div`
-  border: var(--debug);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(6, 1fr);
   grid-gap: 10px;
   max-width: 650px;
-  background-color: var(--pitch);
   padding: 20px 10px;
-  box-shadow: var(--bs);
 
   .striker {
     grid-column: 2/3;

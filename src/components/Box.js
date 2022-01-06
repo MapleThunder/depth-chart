@@ -5,6 +5,7 @@ const BoxStyles = styled.div`
   flex-direction: column;
   border: 2px solid var(--black);
   border-radius: var(--br);
+  box-shadow: var(--bs);
   text-align: center;
   padding: 5px 10px;
   background-color: var(--background);

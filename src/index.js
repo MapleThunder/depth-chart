@@ -7,7 +7,9 @@ function App() {
   return (
     <>
       <Header />
-      <DepthChart />
+      <main>
+        <DepthChart />
+      </main>
     </>
   );
 }
