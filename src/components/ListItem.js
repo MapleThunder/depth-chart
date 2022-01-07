@@ -1,15 +1,21 @@
 import styled from "@emotion/styled";
 
-export function ListItem({ player }) {
-  return <ListItemStyles>{player.kit_name}</ListItemStyles>;
+export function ListItem({ player, code }) {
+  const [position] = player.positions.filter((p) => p.code == code);
+
+  return (
+    <ListItemStyles>
+      <span>{player.kit_name}</span>
+      <span>{position.rating}</span>
+    </ListItemStyles>
+  );
 }
 
 const ListItemStyles = styled.li`
   display: flex;
-  border: var(--debug);
-  padding-bottom: 7px;
+  justify-content: space-between;
+  height: 27px;
+  align-items: center;
 
-  &:last-child {
-    padding-bottom: 0;
-  }
+  border: var(--debug);
 `;

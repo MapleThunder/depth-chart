@@ -6,23 +6,25 @@ import { Box } from "./Box.js";
 
 export function DepthChart() {
   const [players, setPlayers] = useState(null);
-
-  useEffect(() => {
-    sanityClient
-      .fetch(
-        `*[_type == "player"]{
+  const query = `
+    *[_type == "player"]{
       name,
       kit_name,
       kit_number,
-      positions
-    }`
-      )
-      .then((data) => setPlayers(data));
+      positions[]-> {
+        rating,
+        "code": position_ref->code
+      }
+    }
+  `;
+  useEffect(() => {
+    sanityClient.fetch(query).then((data) => setPlayers(data));
   }, []);
 
   if (players == null) return <p>Loading...</p>;
   return (
     <ChartStyles>
+      {console.log(players)}
       {boxes &&
         boxes.map((box, i) => <Box details={box} players={players} key={i} />)}
     </ChartStyles>

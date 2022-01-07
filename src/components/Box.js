@@ -1,6 +1,45 @@
 import styled from "@emotion/styled";
 import { ListItem } from "./ListItem";
 
+export function Box({ details, players }) {
+  const filtered = players.filter((player) => {
+    const pos = player.positions;
+    for (let i = 0; i < pos.length; i++) {
+      if (pos[i].code == details.position) {
+        return true;
+      }
+    }
+    return false;
+  });
+
+  function getFilteredClass(num) {
+    let colour = "--bad";
+    if (num >= details.limits.good) colour = "--good";
+    else if (num >= details.limits.okay) colour = "--okay";
+
+    return colour;
+  }
+
+  return (
+    <BoxStyles
+      className={details.classes}
+      filteredClass={getFilteredClass(filtered.length)}
+    >
+      <div className="box-label-wrapper">
+        <span className="box-label">{details.label}</span>
+        <div className="count-pill">{filtered.length}</div>
+      </div>
+      <div className="box-list-wrapper">
+        <ul>
+          {filtered.map((player, i) => (
+            <ListItem key={i} player={player} code={details.position} />
+          ))}
+        </ul>
+      </div>
+    </BoxStyles>
+  );
+}
+
 const BoxStyles = styled.div`
   display: flex;
   flex-direction: column;
@@ -34,36 +73,3 @@ const BoxStyles = styled.div`
     }
   }
 `;
-
-export function Box({ details, players }) {
-  const filtered = players.filter((player) =>
-    player.positions.includes(details.position)
-  );
-
-  function getFilteredClass(num) {
-    let colour = "--bad";
-    if (num >= details.limits.good) colour = "--good";
-    else if (num >= details.limits.okay) colour = "--okay";
-
-    return colour;
-  }
-
-  return (
-    <BoxStyles
-      className={details.classes}
-      filteredClass={getFilteredClass(filtered.length)}
-    >
-      <div className="box-label-wrapper">
-        <span className="box-label">{details.label}</span>
-        <div className="count-pill">{filtered.length}</div>
-      </div>
-      <div className="box-list-wrapper">
-        <ul>
-          {filtered.map((player, i) => (
-            <ListItem key={i} player={player} />
-          ))}
-        </ul>
-      </div>
-    </BoxStyles>
-  );
-}
