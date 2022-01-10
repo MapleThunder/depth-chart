@@ -24,7 +24,6 @@ export function DepthChart() {
   if (players == null) return <p>Loading...</p>;
   return (
     <ChartStyles>
-      {console.log(players)}
       {boxes &&
         boxes.map((box, i) => <Box details={box} players={players} key={i} />)}
     </ChartStyles>
