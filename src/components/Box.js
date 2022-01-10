@@ -2,15 +2,30 @@ import styled from "@emotion/styled";
 import { ListItem } from "./ListItem";
 
 export function Box({ details, players }) {
-  const filtered = players.filter((player) => {
-    const pos = player.positions;
-    for (let i = 0; i < pos.length; i++) {
-      if (pos[i].code == details.position) {
-        return true;
+  const filtered = players
+    .filter((player) => {
+      const pos = player.positions;
+      for (let i = 0; i < pos.length; i++) {
+        if (pos[i].code == details.position) {
+          return true;
+        }
       }
-    }
-    return false;
-  });
+      return false;
+    })
+    .sort(function (a, b) {
+      let r_a, r_b;
+      a.positions.forEach((p) => {
+        if (p.code == details.position) {
+          r_a = p.rating;
+        }
+      });
+      b.positions.forEach((p) => {
+        if (p.code == details.position) {
+          r_b = p.rating;
+        }
+      });
+      return r_b - r_a;
+    });
 
   function getFilteredClass(num) {
     let colour = "--bad";
