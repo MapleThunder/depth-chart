@@ -17,9 +17,17 @@ export default {
     {
       title: "Rating",
       name: "rating",
-      type: "number",
-      description: "Skill in position from 1-10",
-      validation: (Rule) => Rule.min(1).max(10),
+      type: "string",
+      description: "Skill in position",
+      options: {
+        list: [
+          { title: "Unconvincing", value: "1" },
+          { title: "Competent", value: "2" },
+          { title: "Accomplished", value: "3" },
+          { title: "Good", value: "4" },
+          { title: "Great", value: "5" },
+        ],
+      },
     },
   ],
 };
