@@ -62,7 +62,7 @@ const BoxStyles = styled.div`
   border-radius: var(--br);
   box-shadow: var(--bs);
   text-align: center;
-  padding: 5px 10px;
+  padding: 5px 0;
   background-color: var(--background);
 
   .box-label-wrapper {
@@ -72,7 +72,7 @@ const BoxStyles = styled.div`
     border-bottom: 1px solid var(--black);
     border-radius: var(--br) var(--br) 0 0;
     padding: 5px 10px;
-    margin: -5px -10px 5px -10px;
+    margin: -5px 0 0 0;
     background-color: var(${(props) => props.filteredClass});
 
     .box-label {
@@ -84,7 +84,12 @@ const BoxStyles = styled.div`
       border-radius: 7px;
       margin-left: 10px;
       border: 1px solid var(--black);
-      box-shadow: var(--bs-small);
+      box-shadow: var(--bs-inset);
     }
   }
+
+  .box-list-wrapper ul li:nth-child(even) {
+    background-color: var(--background-stripe);
+  }
+  
 `;

@@ -11,6 +11,7 @@
   --green: #1aa420;
 
   --background: var(--grey);
+  --background-stripe: #acabab;
   --primary: var(--purple);
   --pitch: var(--green);
   --great: rgba(23, 181, 31, 0.7);
@@ -23,6 +24,7 @@
   --br: 7px;
   --bs: 0 3px 6px var(--black);
   --bs-small: 1px 1px 2px var(--black);
+  --bs-inset: inset 1px 1px 2px var(--black);
 }
 
 html,

@@ -30,7 +30,7 @@ export function ListItem({ player, code }) {
 
   return (
     <ListItemStyles abilityColour={getAbilityClass(position.rating)}>
-      <span>{player.kit_name}</span>
+      <span className="player-name">{player.kit_name}</span>
       <span className="ability">{ability[position.rating]}</span>
     </ListItemStyles>
   );
@@ -39,8 +39,13 @@ export function ListItem({ player, code }) {
 const ListItemStyles = styled.li`
   display: flex;
   justify-content: space-between;
-  height: 27px;
+  height: 30px;
   align-items: center;
+  padding: 0 10px;
+
+  .player-name {
+    margin-right: 10px;
+  }
 
   .ability {
     border: solid 1px var(--black);

@@ -35,7 +35,7 @@ const ChartStyles = styled.div`
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(6, 1fr);
   grid-gap: 10px;
-  max-width: 650px;
+  max-width: 900px;
   padding: 20px 10px;
 
   .striker {
