@@ -64,6 +64,7 @@ const BoxStyles = styled.div`
   text-align: center;
   padding: 5px 0;
   background-color: var(--background);
+  min-height: 80px;
 
   .box-label-wrapper {
     display: flex;
@@ -91,5 +92,4 @@ const BoxStyles = styled.div`
   .box-list-wrapper ul li:nth-child(even) {
     background-color: var(--background-stripe);
   }
-  
 `;

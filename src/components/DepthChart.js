@@ -1,27 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styled from "@emotion/styled";
-import sanityClient from "../client.js";
 import { boxes } from "../data/boxes";
 import { Box } from "./Box.js";
 
 export function DepthChart() {
-  const [players, setPlayers] = useState(null);
-  const query = `
-    *[_type == "player"]{
-      name,
-      kit_name,
-      kit_number,
-      positions[]-> {
-        rating,
-        "code": position_ref->code
-      }
-    }
-  `;
-  useEffect(() => {
-    sanityClient.fetch(query).then((data) => setPlayers(data));
-  }, []);
+  const [players, setPlayers] = useState([]);
 
-  if (players == null) return <p>Loading...</p>;
   return (
     <ChartStyles>
       {boxes &&
