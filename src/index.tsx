@@ -1,6 +1,7 @@
 import { render } from "react-dom";
 import { DepthChart } from "./components/DepthChart";
 import { Header } from "./components/Header";
+import { AddPlayer } from "./components/AddPlayer";
 import "./styles/base.scss";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
     <>
       <Header />
       <main>
+        <AddPlayer />
         <DepthChart />
       </main>
     </>
