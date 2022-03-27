@@ -19,9 +19,9 @@ export function App() {
 
 const MainStyles = styled.main`
   .wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 250px auto;
+    grid-gap: 10px;
     max-width: var(--max-width);
   }
 `;
