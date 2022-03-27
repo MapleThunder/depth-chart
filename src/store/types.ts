@@ -22,3 +22,14 @@ export type Options = {
     good: number;
   };
 };
+
+export type Box = {
+  label: string;
+  classes: string;
+  position: string;
+  limits: {
+    bad: number;
+    okay: number;
+    good: number;
+  };
+};

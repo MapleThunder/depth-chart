@@ -1,4 +1,6 @@
-export const boxes = [
+import { Box } from "../store/types";
+
+export const boxes: Array<Box> = [
   {
     label: "Striker",
     classes: "striker",
