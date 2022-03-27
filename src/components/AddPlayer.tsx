@@ -1,10 +1,11 @@
+import styled from "@emotion/styled";
 import { useState } from "react";
 
 export function AddPlayer() {
   const [playerName, setPlayerName] = useState("");
 
   return (
-    <form>
+    <FormStyles>
       <input
         type="text"
         name="name"
@@ -12,6 +13,11 @@ export function AddPlayer() {
         onChange={(e) => setPlayerName(e.target.value)}
       />
       <button type="submit">+</button>
-    </form>
+    </FormStyles>
   );
 }
+
+const FormStyles = styled.form`
+  border: var(--debug);
+  padding: 10px;
+`;
