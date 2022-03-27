@@ -1,10 +1,11 @@
 import styled from "@emotion/styled";
-import ability from "../data/ability";
+import { getAbility } from "../data/ability";
+import { Player } from "../store/types";
 
-export function ListItem({ player, code }) {
+export function ListItem({ player, code }: Params) {
   const [position] = player.positions.filter((p) => p.code == code);
 
-  function getAbilityClass(num) {
+  function getAbilityClass(num: string): string {
     let colour = "";
 
     switch (num) {
@@ -29,14 +30,14 @@ export function ListItem({ player, code }) {
   }
 
   return (
-    <ListItemStyles abilityColour={getAbilityClass(position.rating)}>
-      <span className="player-name">{player.kit_name}</span>
-      <span className="ability">{ability[position.rating]}</span>
+    <ListItemStyles abilityColour={getAbilityClass(`${position.weight}`)}>
+      <span className="player-name">{player.name}</span>
+      <span className="ability">{getAbility(position.weight)}</span>
     </ListItemStyles>
   );
 }
 
-const ListItemStyles = styled.li`
+const ListItemStyles = styled.li<StyleProps>`
   display: flex;
   justify-content: space-between;
   height: 30px;
@@ -55,3 +56,12 @@ const ListItemStyles = styled.li`
     background-color: var(${(props) => props.abilityColour});
   }
 `;
+
+type Params = {
+  player: Player;
+  code: string;
+};
+
+type StyleProps = {
+  abilityColour: string;
+};
