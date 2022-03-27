@@ -1,6 +1,6 @@
 import { DepthChart } from "./DepthChart";
 import { Header } from "./Header";
-import { AddPlayer } from "./AddPlayer";
+import { PlayerForm } from "./PlayerForm";
 import styled from "@emotion/styled";
 
 export function App() {
@@ -9,7 +9,7 @@ export function App() {
       <Header />
       <MainStyles>
         <div className="wrapper">
-          <AddPlayer />
+          <PlayerForm />
           <DepthChart />
         </div>
       </MainStyles>
