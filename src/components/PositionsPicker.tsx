@@ -6,12 +6,15 @@ export function PositionsPicker({ positions, handleInput }: Params) {
     <PickerStyles>
       {boxes.map((box) => {
         return (
-          <input
-            type="checkbox"
-            name="position"
-            value={box.position}
-            key={box.position}
-          />
+          <div className="position-input-wrapper" key={box.position}>
+            <input
+              type="checkbox"
+              name="position"
+              id={box.position}
+              value={box.position}
+            />
+            {box.label}
+          </div>
         );
       })}
     </PickerStyles>
@@ -20,6 +23,13 @@ export function PositionsPicker({ positions, handleInput }: Params) {
 
 const PickerStyles = styled.fieldset`
   border: var(--debug);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .position-input-wrapper {
+    padding: 3px;
+  }
 `;
 
 type Params = {

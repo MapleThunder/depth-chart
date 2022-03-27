@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { useState } from "react";
+import React, { useState } from "react";
 import { PositionsPicker } from "./PositionsPicker";
 
 const default_form_state: PlayerFormState = {
@@ -10,6 +10,7 @@ const default_form_state: PlayerFormState = {
 
 export function PlayerForm() {
   const [values, setValues] = useState(default_form_state);
+  const [loading, setLoading] = useState(false);
 
   function handleInput(
     event: React.ChangeEvent<HTMLInputElement>,
@@ -22,9 +23,15 @@ export function PlayerForm() {
     }));
   }
 
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setLoading(true);
+    console.log("TEST");
+  }
+
   return (
     <WrapperStyles>
-      <form>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <h2>Player</h2>
         <label>
           Player Name
@@ -55,7 +62,9 @@ export function PlayerForm() {
             handleInput={handleInput}
           />
         </label>
-        <button type="submit">+</button>
+        <button type="submit" disabled={loading} aria-busy={loading}>
+          Submit
+        </button>
       </form>
     </WrapperStyles>
   );
@@ -74,6 +83,20 @@ const WrapperStyles = styled.div`
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 10px;
+  }
+
+  button {
+    width: 75px;
+    height: 30px;
+    background-color: var(--primary);
+    color: var(--text-colour-light);
+    border: 1px solid transparent;
+    border-radius: 5px;
+
+    &:disabled {
+      color: var(--grey);
+      background-color: var(--blue-dark);
+    }
   }
 `;
 
