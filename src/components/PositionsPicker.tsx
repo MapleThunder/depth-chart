@@ -1,22 +1,12 @@
 import styled from "@emotion/styled";
-import { boxes } from "../data/boxes";
+import { positions as p_list } from "../data/positions";
+import { CheckboxList } from "./CheckboxList";
 
 export function PositionsPicker({ positions, handleInput }: Params) {
   return (
     <PickerStyles>
-      {boxes.map((box) => {
-        return (
-          <div className="position-input-wrapper" key={box.position}>
-            <input
-              type="checkbox"
-              name="position"
-              id={box.position}
-              value={box.position}
-            />
-            {box.label}
-          </div>
-        );
-      })}
+      <div>Position</div>
+      <CheckboxList list={p_list} playerPositions={[]} />
     </PickerStyles>
   );
 }
@@ -24,12 +14,8 @@ export function PositionsPicker({ positions, handleInput }: Params) {
 const PickerStyles = styled.fieldset`
   border: var(--debug);
   display: flex;
-  flex-direction: column;
   justify-content: center;
-
-  .position-input-wrapper {
-    padding: 3px;
-  }
+  width: 100%;
 `;
 
 type Params = {

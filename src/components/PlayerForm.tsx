@@ -26,7 +26,9 @@ export function PlayerForm() {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setLoading(true);
-    console.log("TEST");
+    console.log(values);
+    setValues(default_form_state);
+    setLoading(false);
   }
 
   return (
@@ -34,7 +36,7 @@ export function PlayerForm() {
       <form onSubmit={(e) => handleSubmit(e)}>
         <h2>Player</h2>
         <label>
-          Player Name
+          Player Name <br />
           <input
             id="name"
             type="text"
@@ -45,7 +47,7 @@ export function PlayerForm() {
           />
         </label>
         <label>
-          Player Number
+          Player Number <br />
           <input
             id="kit_number"
             type="text"
@@ -55,13 +57,10 @@ export function PlayerForm() {
             onChange={(e) => handleInput(e, "kit_number")}
           />
         </label>
-        <label>
-          Positions
-          <PositionsPicker
-            positions={values.positions}
-            handleInput={handleInput}
-          />
-        </label>
+        <PositionsPicker
+          positions={values.positions}
+          handleInput={handleInput}
+        />
         <button type="submit" disabled={loading} aria-busy={loading}>
           Submit
         </button>
