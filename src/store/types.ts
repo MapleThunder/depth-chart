@@ -7,7 +7,7 @@ export type Player = {
 
 export type Position = {
   label: string;
-  code: string;
+  value: string;
   weight: number;
 };
 

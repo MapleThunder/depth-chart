@@ -3,72 +3,72 @@ import { Position } from "../store/types";
 export const positions: Array<Position> = [
   {
     label: "Striker",
-    code: "STK",
+    value: "STK",
     weight: 0,
   },
   {
     label: "Left Wing",
-    code: "LAM",
+    value: "LAM",
     weight: 0,
   },
   {
     label: "Centre Att-Mid",
-    code: "CAM",
+    value: "CAM",
     weight: 0,
   },
   {
     label: "Right Wing",
-    code: "RAM",
+    value: "RAM",
     weight: 0,
   },
   {
     label: "Left Mid",
-    code: "LMD",
+    value: "LMD",
     weight: 0,
   },
   {
     label: "Centre Mid",
-    code: "CMD",
+    value: "CMD",
     weight: 0,
   },
   {
     label: "Right Mid",
-    code: "RMD",
+    value: "RMD",
     weight: 0,
   },
   {
     label: "Left Wingback",
-    code: "LWB",
+    value: "LWB",
     weight: 0,
   },
   {
     label: "Defensive Mid",
-    code: "DMD",
+    value: "DMD",
     weight: 0,
   },
   {
     label: "Right Wingback",
-    code: "RWB",
+    value: "RWB",
     weight: 0,
   },
   {
     label: "Left Fullback",
-    code: "LFB",
+    value: "LFB",
     weight: 0,
   },
   {
     label: "Centreback",
-    code: "CTB",
+    value: "CTB",
     weight: 0,
   },
   {
     label: "Right Fullback",
-    code: "RFB",
+    value: "RFB",
     weight: 0,
   },
   {
     label: "Goal Keeper",
-    code: "GKP",
+    value: "GKP",
     weight: 0,
   },
 ];

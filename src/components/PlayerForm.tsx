@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
-import { PositionsPicker } from "./PositionsPicker";
+import { MultiSelect } from "react-multi-select-component";
+import { positions } from "../data/positions";
+import { Position } from "../store/types";
 
 const default_form_state: PlayerFormState = {
   name: "",
@@ -16,17 +18,24 @@ export function PlayerForm() {
     event: React.ChangeEvent<HTMLInputElement>,
     label: string
   ) {
-    event.persist();
     setValues((values) => ({
       ...values,
       [label]: event.target.value,
     }));
   }
 
+  function handlePositions(parr: Array<Position>) {
+    console.log(parr);
+    setValues((values) => ({
+      ...values,
+      positions: parr,
+    }));
+  }
+
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setLoading(true);
-    console.log(values);
+    // console.log(values);
     setValues(default_form_state);
     setLoading(false);
   }
@@ -40,7 +49,7 @@ export function PlayerForm() {
           <input
             id="name"
             type="text"
-            placeholder="Name"
+            placeholder="Eustáquio"
             name="name"
             value={values.name}
             onChange={(e) => handleInput(e, "name")}
@@ -51,16 +60,21 @@ export function PlayerForm() {
           <input
             id="kit_number"
             type="text"
-            placeholder="10"
+            placeholder="7"
             name="kit_number"
             value={values.kit_number}
             onChange={(e) => handleInput(e, "kit_number")}
           />
         </label>
-        <PositionsPicker
-          positions={values.positions}
-          handleInput={handleInput}
-        />
+        <label>
+          Positions <br />
+          <MultiSelect
+            options={positions}
+            value={values.positions}
+            onChange={(e: Array<Position>) => handlePositions(e)}
+            labelledBy="Select"
+          />
+        </label>
         <button type="submit" disabled={loading} aria-busy={loading}>
           Submit
         </button>
@@ -102,5 +116,5 @@ const WrapperStyles = styled.div`
 export type PlayerFormState = {
   name: string;
   kit_number: string;
-  positions: Array<string>;
+  positions: Array<Position>;
 };
