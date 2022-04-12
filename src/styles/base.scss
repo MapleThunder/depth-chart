@@ -4,6 +4,7 @@
   --white: #fff;
   --black: #222222;
   --grey: #cccccc;
+  --grey-dark: #444444;
   --greyDark: #444444;
   --yellow: #fcf780;
   --blue: #156596;
@@ -23,6 +24,7 @@
   --okay: rgba(252, 247, 128, 0.7);
   --competent: rgba(235, 150, 60, 0.7);
   --bad: rgba(240, 71, 71, 0.7);
+  --error: rgba(233, 3, 3, 0.897);
 
   --debug: dashed 1px red;
   --br: 7px;
@@ -52,9 +54,4 @@ h1 {
 h2 {
   font-size: 1.5em;
   font-weight: bold;
-}
-
-main {
-  display: flex;
-  justify-content: center;
 }
