@@ -1,84 +1,105 @@
 import styled from "@emotion/styled";
-import React, { useState } from "react";
-import { MultiSelect } from "react-multi-select-component";
+import {
+  ErrorMessage,
+  Field,
+  Form,
+  Formik,
+  FormikErrors,
+  FormikHelpers,
+} from "formik";
 import { positions } from "../data/positions";
 import { Position } from "../store/types";
+import CustomSelect from "./CustomSelect";
 
-const default_form_state: PlayerFormState = {
+const initialValues: PlayerFormState = {
   name: "",
   kit_number: "",
   positions: [],
 };
 
 export function PlayerForm() {
-  const [values, setValues] = useState(default_form_state);
-  const [loading, setLoading] = useState(false);
+  function validate(values: PlayerFormState) {
+    let errors: FormikErrors<PlayerFormState> = {};
 
-  function handleInput(
-    event: React.ChangeEvent<HTMLInputElement>,
-    label: string
+    if (!values.name) {
+      errors.name = "Required";
+    }
+    if (values.kit_number.length > 2) {
+      errors.kit_number = "Shirt number cannot be longer than 2 characters";
+    }
+    if (values.positions.length < 0) {
+      errors.positions = "At least one position is required";
+    }
+
+    return errors;
+  }
+
+  function onSubmit(
+    values: PlayerFormState,
+    actions: FormikHelpers<PlayerFormState>
   ) {
-    setValues((values) => ({
-      ...values,
-      [label]: event.target.value,
-    }));
-  }
-
-  function handlePositions(parr: Array<Position>) {
-    console.log(parr);
-    setValues((values) => ({
-      ...values,
-      positions: parr,
-    }));
-  }
-
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setLoading(true);
-    // console.log(values);
-    setValues(default_form_state);
-    setLoading(false);
+    actions.resetForm();
+    console.log({ values });
   }
 
   return (
     <WrapperStyles>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <h2>Player</h2>
-        <label>
-          Player Name <br />
-          <input
-            id="name"
-            type="text"
-            placeholder="Eustáquio"
-            name="name"
-            value={values.name}
-            onChange={(e) => handleInput(e, "name")}
-          />
-        </label>
-        <label>
-          Player Number <br />
-          <input
-            id="kit_number"
-            type="text"
-            placeholder="7"
-            name="kit_number"
-            value={values.kit_number}
-            onChange={(e) => handleInput(e, "kit_number")}
-          />
-        </label>
-        <label>
-          Positions <br />
-          <MultiSelect
-            options={positions}
-            value={values.positions}
-            onChange={(e: Array<Position>) => handlePositions(e)}
-            labelledBy="Select"
-          />
-        </label>
-        <button type="submit" disabled={loading} aria-busy={loading}>
-          Submit
-        </button>
-      </form>
+      <Formik {...{ initialValues, onSubmit, validate }}>
+        {({ errors, touched }) => (
+          <Form>
+            <h2>Player</h2>
+            <label>
+              Player Name <br />
+              <Field
+                id="name"
+                type="text"
+                placeholder="Eustáquio"
+                name="name"
+                className={`form-control ${
+                  touched.name && errors.name ? "error-field" : ""
+                }`}
+              />
+              <ErrorMessage
+                component="div"
+                name="name"
+                className="error-message"
+              />
+            </label>
+            <label>
+              Shirt Number <br />
+              <Field
+                id="kit_number"
+                type="text"
+                placeholder="7"
+                name="kit_number"
+                className={`form-control ${
+                  touched.kit_number && errors.kit_number ? "error-field" : ""
+                }`}
+              />
+              <ErrorMessage
+                component="div"
+                name="kit_number"
+                className="error-message"
+              />
+            </label>
+            <label>
+              Positions <br />
+              <Field
+                id="positions"
+                name="positions"
+                component={CustomSelect}
+                options={positions}
+              />
+              <ErrorMessage
+                component="div"
+                name="positions"
+                className="error-message"
+              />
+            </label>
+            <button type="submit">Add Player</button>
+          </Form>
+        )}
+      </Formik>
     </WrapperStyles>
   );
 }
@@ -97,9 +118,26 @@ const WrapperStyles = styled.div`
     grid-template-columns: 1fr;
     grid-gap: 10px;
   }
+  input {
+    height: 20px;
+    width: 150px;
+    border-radius: 5px;
+    border: 1px solid var(--grey-dark);
+    padding-left: 5px;
+
+    &.error-field {
+      border-color: var(--error);
+    }
+  }
+
+  .error-message {
+    color: var(--error);
+    padding: 2px;
+    font-size: 0.8rem;
+  }
 
   button {
-    width: 75px;
+    width: 150px;
     height: 30px;
     background-color: var(--primary);
     color: var(--text-colour-light);
