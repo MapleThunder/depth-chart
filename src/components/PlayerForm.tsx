@@ -7,11 +7,9 @@ import {
   FormikErrors,
   FormikHelpers,
 } from "formik";
+import { v4 as uuid } from "uuid";
 import { positions } from "../data/positions";
-import {
-  usePlayerData,
-  playerReducer as reducer,
-} from "../hooks/usePlayerData";
+import { usePlayerData } from "../hooks/usePlayerData";
 import { PlayerFormState } from "../store/types";
 import CustomSelect from "./CustomSelect";
 
@@ -22,8 +20,7 @@ const initialValues: PlayerFormState = {
 };
 
 export function PlayerForm() {
-  const { players, addPlayer } = usePlayerData({ reducer });
-  console.log(players);
+  const { players, addPlayer } = usePlayerData();
 
   function validate(values: PlayerFormState) {
     let errors: FormikErrors<PlayerFormState> = {};
@@ -51,7 +48,7 @@ export function PlayerForm() {
         return { ...pos, weight: 0 };
       } else return pos;
     });
-    addPlayer({ ...values, positions, id: "1" });
+    addPlayer({ ...values, positions, id: uuid() });
   }
 
   return (

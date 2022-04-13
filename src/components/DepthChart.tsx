@@ -3,13 +3,10 @@ import styled from "@emotion/styled";
 import { boxes } from "../data/boxes";
 import { Box } from "./Box";
 import { Player } from "../store/types";
-import {
-  playerReducer as reducer,
-  usePlayerData,
-} from "../hooks/usePlayerData";
+import { usePlayerData } from "../hooks/usePlayerData";
 
 export function DepthChart() {
-  const { players } = usePlayerData({ reducer });
+  const { players } = usePlayerData();
 
   return (
     <ChartStyles>

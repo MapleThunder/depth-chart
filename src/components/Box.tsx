@@ -3,6 +3,7 @@ import { ListItem } from "./ListItem";
 import { Box, Player } from "../store/types";
 
 export function Box({ details, players }: Params) {
+  console.log({ details, players });
   const filtered = players
     .filter((player: Player) => {
       const pos = player.positions;

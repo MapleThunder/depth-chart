@@ -3,7 +3,7 @@ import { getAbility } from "../data/ability";
 import { Player } from "../store/types";
 
 export function ListItem({ player, code }: Params) {
-  const [position] = player.positions.filter((p) => p.code == code);
+  const [position] = player.positions.filter((p) => p.value == code);
 
   function getAbilityClass(num: string): string {
     let colour = "";
@@ -32,7 +32,6 @@ export function ListItem({ player, code }: Params) {
   return (
     <ListItemStyles abilityColour={getAbilityClass(`${position.weight}`)}>
       <span className="player-name">{player.name}</span>
-      <span className="ability">{getAbility(position.weight)}</span>
     </ListItemStyles>
   );
 }
@@ -42,7 +41,9 @@ const ListItemStyles = styled.li<StyleProps>`
   justify-content: space-between;
   height: 30px;
   align-items: center;
-  padding: 0 10px;
+  margin: 0 10px;
+  padding: 0 5px;
+  border-bottom: 1px solid var(--background-stripe);
 
   .player-name {
     margin-right: 10px;

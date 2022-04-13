@@ -1,17 +1,17 @@
-export function getAbility(num: number): string {
+export function getAbility(num: string): string {
   switch (num) {
-    case 1:
+    case "1":
       return "Unconvincing";
-    case 2:
+    case "2":
       return "Competent";
-    case 3:
+    case "3":
       return "Accomplished";
-    case 4:
+    case "4":
       return "Good";
-    case 5:
+    case "5":
       return "Great";
 
     default:
-      return "Number Error";
+      return "";
   }
 }

@@ -58,5 +58,5 @@ type PlayerState = {
 
 type PlayerAction = {
   type: string;
-  payload: Player;
+  player: Player;
 };
