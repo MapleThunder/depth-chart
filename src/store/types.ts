@@ -1,29 +1,40 @@
-export type Player = {
+export {
+  Player,
+  Position,
+  PlayerAction,
+  PlayerState,
+  PlayerFormState,
+  OptionPayload,
+  Options,
+  Box,
+};
+
+type Player = {
   id: string;
   name: string;
-  number: string;
+  kit_number: string;
   positions: Array<Position>;
 };
 
-export type Position = {
+type Position = {
   label: string;
   value: string;
   weight: number;
 };
 
-export type OptionPayload = {
+type OptionPayload = {
   label: string;
   value: string;
 };
 
-export type Options = {
+type Options = {
   thresholds: {
     okay: number;
     good: number;
   };
 };
 
-export type Box = {
+type Box = {
   label: string;
   classes: string;
   position: string;
@@ -32,4 +43,20 @@ export type Box = {
     okay: number;
     good: number;
   };
+};
+
+type PlayerFormState = {
+  name: string;
+  kit_number: string;
+  positions: Array<Position>;
+};
+
+// Reducer Types
+type PlayerState = {
+  players: Array<Player>;
+};
+
+type PlayerAction = {
+  type: string;
+  payload: Player;
 };

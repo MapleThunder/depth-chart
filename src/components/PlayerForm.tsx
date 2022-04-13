@@ -8,7 +8,11 @@ import {
   FormikHelpers,
 } from "formik";
 import { positions } from "../data/positions";
-import { Position } from "../store/types";
+import {
+  usePlayerData,
+  playerReducer as reducer,
+} from "../hooks/usePlayerData";
+import { PlayerFormState } from "../store/types";
 import CustomSelect from "./CustomSelect";
 
 const initialValues: PlayerFormState = {
@@ -18,6 +22,9 @@ const initialValues: PlayerFormState = {
 };
 
 export function PlayerForm() {
+  const { players, addPlayer } = usePlayerData({ reducer });
+  console.log(players);
+
   function validate(values: PlayerFormState) {
     let errors: FormikErrors<PlayerFormState> = {};
 
@@ -39,7 +46,12 @@ export function PlayerForm() {
     actions: FormikHelpers<PlayerFormState>
   ) {
     actions.resetForm();
-    console.log({ values });
+    const positions = values.positions.map((pos) => {
+      if (typeof pos.weight != "number") {
+        return { ...pos, weight: 0 };
+      } else return pos;
+    });
+    addPlayer({ ...values, positions, id: "1" });
   }
 
   return (
@@ -150,9 +162,3 @@ const WrapperStyles = styled.div`
     }
   }
 `;
-
-export type PlayerFormState = {
-  name: string;
-  kit_number: string;
-  positions: Array<Position>;
-};

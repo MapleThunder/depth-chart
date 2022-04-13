@@ -7,7 +7,7 @@ export function Box({ details, players }: Params) {
     .filter((player: Player) => {
       const pos = player.positions;
       for (let i = 0; i < pos.length; i++) {
-        if (pos[i].code == details.position) {
+        if (pos[i].value == details.position) {
           return true;
         }
       }
@@ -17,12 +17,12 @@ export function Box({ details, players }: Params) {
       let r_a: number = 0,
         r_b: number = 0;
       a.positions.forEach((p) => {
-        if (p.code == details.position) {
+        if (p.value == details.position) {
           r_a = p.weight;
         }
       });
       b.positions.forEach((p) => {
-        if (p.code == details.position) {
+        if (p.value == details.position) {
           r_b = p.weight;
         }
       });
