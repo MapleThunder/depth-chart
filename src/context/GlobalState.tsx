@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, FC, ReactNode, useReducer } from "react";
 import { v4 as uuid } from "uuid";
 import { Player, PlayerState } from "../store/types";
 import { actionTypes, playerReducer } from "./playerReducer";
@@ -18,7 +18,7 @@ function init(): PlayerState {
 
 const GlobalContext = createContext(init());
 
-function GlobalProvider({ children }) {
+function GlobalProvider({ children }: { children: JSX.Element }) {
   const [{ players }, dispatch] = useReducer(playerReducer, init());
 
   const addPlayer = (player: Player) =>
