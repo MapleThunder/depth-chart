@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { getAbility } from "../data/ability";
 import { Player } from "../store/types";
 
 export function ListItem({ player, code }: Params) {

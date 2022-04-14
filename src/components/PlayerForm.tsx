@@ -7,9 +7,10 @@ import {
   FormikErrors,
   FormikHelpers,
 } from "formik";
+import { useContext } from "react";
 import { v4 as uuid } from "uuid";
+import { GlobalContext } from "../context/GlobalState";
 import { positions } from "../data/positions";
-import { usePlayerData } from "../hooks/usePlayerData";
 import { PlayerFormState } from "../store/types";
 import CustomSelect from "./CustomSelect";
 
@@ -20,7 +21,7 @@ const initialValues: PlayerFormState = {
 };
 
 export function PlayerForm() {
-  const { players, addPlayer } = usePlayerData();
+  const { addPlayer } = useContext(GlobalContext);
 
   function validate(values: PlayerFormState) {
     let errors: FormikErrors<PlayerFormState> = {};

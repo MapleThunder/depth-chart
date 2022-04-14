@@ -54,6 +54,7 @@ type PlayerFormState = {
 // Reducer Types
 type PlayerState = {
   players: Array<Player>;
+  addPlayer: (p: Player) => void | undefined;
 };
 
 type PlayerAction = {

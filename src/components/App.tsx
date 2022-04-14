@@ -2,10 +2,11 @@ import { DepthChart } from "./DepthChart";
 import { Header } from "./Header";
 import { PlayerForm } from "./PlayerForm";
 import styled from "@emotion/styled";
+import { GlobalProvider } from "../context/GlobalState";
 
 export function App() {
   return (
-    <>
+    <GlobalProvider>
       <Header />
       <MainStyles>
         <div className="wrapper">
@@ -13,7 +14,7 @@ export function App() {
           <DepthChart />
         </div>
       </MainStyles>
-    </>
+    </GlobalProvider>
   );
 }
 

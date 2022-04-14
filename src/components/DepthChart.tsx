@@ -1,12 +1,11 @@
-import { useState } from "react";
+import { useContext } from "react";
 import styled from "@emotion/styled";
 import { boxes } from "../data/boxes";
 import { Box } from "./Box";
-import { Player } from "../store/types";
-import { usePlayerData } from "../hooks/usePlayerData";
+import { GlobalContext } from "../context/GlobalState";
 
 export function DepthChart() {
-  const { players } = usePlayerData();
+  const { players } = useContext(GlobalContext);
 
   return (
     <ChartStyles>
@@ -56,5 +55,3 @@ const ChartStyles = styled.div`
     grid-row: 6/7;
   }
 `;
-
-const initial_state: Array<Player> = [];
