@@ -11,7 +11,7 @@ import { useContext } from "react";
 import { v4 as uuid } from "uuid";
 import { GlobalContext } from "../context/GlobalState";
 import { positions } from "../data/positions";
-import { PlayerFormState } from "../store/types";
+import { PlayerFormState, PlayerFormInit } from "../store/types";
 import CustomSelect from "./CustomSelect";
 
 const initialValues: PlayerFormState = {
@@ -20,8 +20,17 @@ const initialValues: PlayerFormState = {
   positions: [],
 };
 
-export function PlayerForm() {
-  const { addPlayer } = useContext(GlobalContext);
+export function PlayerForm({ id }: PlayerFormInit) {
+  const { players, addPlayer } = useContext(GlobalContext);
+
+  if (id) {
+    const player = players.find((p) => p.id == id);
+    if (player) {
+      initialValues.name = player.name;
+      initialValues.kit_number = player.kit_number;
+      initialValues.positions = player.positions;
+    }
+  }
 
   function validate(values: PlayerFormState) {
     let errors: FormikErrors<PlayerFormState> = {};
@@ -53,11 +62,11 @@ export function PlayerForm() {
   }
 
   return (
-    <WrapperStyles>
+    <FormStyles>
       <Formik {...{ initialValues, onSubmit, validate }}>
-        {({ errors, touched }) => (
+        {({ errors, touched, values }) => (
           <Form>
-            <h2>Player</h2>
+            <h2>{values.id ? "Edit" : "Add"} Player</h2>
             <label>
               Player Name <br />
               <Field
@@ -110,19 +119,11 @@ export function PlayerForm() {
           </Form>
         )}
       </Formik>
-    </WrapperStyles>
+    </FormStyles>
   );
 }
 
-const WrapperStyles = styled.div`
-  padding: 20px;
-  background-color: var(--grey);
-  border-radius: 0 0 5px 5px;
-
-  h2 {
-    margin-bottom: 5px;
-  }
-
+const FormStyles = styled.div`
   form {
     display: grid;
     grid-template-columns: 1fr;

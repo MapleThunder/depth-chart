@@ -1,12 +1,13 @@
 export {
   Player,
   Position,
-  PlayerAction,
-  PlayerState,
-  PlayerFormState,
   OptionPayload,
   Options,
   Box,
+  PlayerFormState,
+  PlayerFormInit,
+  PlayerState,
+  PlayerAction,
 };
 
 type Player = {
@@ -45,10 +46,17 @@ type Box = {
   };
 };
 
+// Form types
+
 type PlayerFormState = {
   name: string;
   kit_number: string;
   positions: Array<Position>;
+  id?: string;
+};
+
+type PlayerFormInit = {
+  id?: string;
 };
 
 // Reducer Types

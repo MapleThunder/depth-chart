@@ -18,7 +18,11 @@ function init(): PlayerState {
 
 const GlobalContext = createContext(init());
 
-function GlobalProvider({ children }: { children: JSX.Element }) {
+function GlobalProvider({
+  children,
+}: {
+  children: JSX.Element | JSX.Element[];
+}) {
   const [{ players }, dispatch] = useReducer(playerReducer, init());
 
   const addPlayer = (player: Player) =>
