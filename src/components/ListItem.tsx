@@ -1,41 +1,25 @@
 import styled from "@emotion/styled";
-import { Player } from "../store/types";
+import { useContext } from "react";
+import { AiOutlineEdit } from "react-icons/ai";
+import { GlobalContext } from "../context/GlobalState";
+import { ListItemParams } from "../store/types";
 
-export function ListItem({ player, code }: Params) {
-  const [position] = player.positions.filter((p) => p.value == code);
-
-  function getAbilityClass(num: string): string {
-    let colour = "";
-
-    switch (num) {
-      case "5":
-        colour = "--great";
-        break;
-      case "4":
-        colour = "--good";
-        break;
-      case "3":
-        colour = "--okay";
-        break;
-      case "2":
-        colour = "--competent";
-        break;
-
-      default:
-        colour = "--bad";
-    }
-
-    return colour;
-  }
+export function ListItem({ player }: ListItemParams) {
+  const { openUpdateModal } = useContext(GlobalContext);
 
   return (
-    <ListItemStyles abilityColour={getAbilityClass(`${position.weight}`)}>
+    <ListItemStyles>
       <span className="player-name">{player.name}</span>
+      <div className="button-wrapper">
+        <button className="edit-button" onClick={() => openUpdateModal(player)}>
+          <AiOutlineEdit />
+        </button>
+      </div>
     </ListItemStyles>
   );
 }
 
-const ListItemStyles = styled.li<StyleProps>`
+const ListItemStyles = styled.li`
   display: flex;
   justify-content: space-between;
   height: 30px;
@@ -44,24 +28,40 @@ const ListItemStyles = styled.li<StyleProps>`
   padding: 0 5px;
   border-bottom: 1px solid var(--background-stripe);
 
+  &:last-child {
+    border-bottom: 1px solid transparent;
+  }
+
+  &:hover,
+  &:focus {
+    div.button-wrapper {
+      .react-icon {
+        color: var(--grey-dark);
+      }
+    }
+  }
+
   .player-name {
     margin-right: 10px;
   }
 
-  .ability {
-    border: solid 1px var(--black);
-    border-radius: var(--br);
-    padding: 2px 3px;
-    box-shadow: var(--bs-small);
-    background-color: var(${(props) => props.abilityColour});
+  div.button-wrapper {
+    button .react-icon {
+      color: var(--disabled);
+      font-size: 1.2rem;
+      vertical-align: middle;
+    }
+
+    button {
+      border: none;
+      background-color: transparent;
+      border-radius: 3px;
+      padding: 2px;
+
+      &:hover,
+      &:focus {
+        background-color: var(--primary-light);
+      }
+    }
   }
 `;
-
-type Params = {
-  player: Player;
-  code: string;
-};
-
-type StyleProps = {
-  abilityColour: string;
-};

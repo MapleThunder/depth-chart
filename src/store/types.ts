@@ -8,6 +8,10 @@ export {
   PlayerFormInit,
   PlayerState,
   PlayerAction,
+  GlobalProviderParams,
+  ListItemParams,
+  ModalParams,
+  BoxParams,
 };
 
 type Player = {
@@ -62,10 +66,39 @@ type PlayerFormInit = {
 // Reducer Types
 type PlayerState = {
   players: Array<Player>;
+  showModal: boolean;
+  editPlayer?: Player;
   addPlayer: (p: Player) => void | undefined;
+  updatePlayer: (p: Player) => void | undefined;
+  openUpdateModal: (p: Player, e?: boolean) => void | undefined;
+  closeUpdateModal: () => void | undefined;
 };
 
 type PlayerAction = {
   type: string;
   player: Player;
+  open?: boolean;
+};
+
+type GlobalProviderParams = {
+  children: JSX.Element | JSX.Element[];
+};
+
+// Component Types
+type ListItemParams = {
+  player: Player;
+  code: string;
+};
+
+type ModalParams = {
+  // children: JSX.Element | JSX.Element[];
+  show: boolean;
+  onClose: () => void;
+  // pid: string;
+  // toggleModal: (change?: boolean) => void;
+};
+
+type BoxParams = {
+  details: Box;
+  players: Array<Player>;
 };

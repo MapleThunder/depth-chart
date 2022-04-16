@@ -3,17 +3,22 @@ import { Header } from "./Header";
 import styled from "@emotion/styled";
 import { GlobalProvider } from "../context/GlobalState";
 import { Sidebar } from "./Sidebar";
+import { IconContext } from "react-icons";
+import { Modal } from "./Modal";
 
 export function App() {
   return (
     <GlobalProvider>
-      <Header />
-      <MainStyles>
-        <div className="wrapper">
-          <Sidebar />
-          <DepthChart />
-        </div>
-      </MainStyles>
+      <IconContext.Provider value={{ className: "react-icon" }}>
+        <Header />
+        <MainStyles>
+          <div className="wrapper">
+            <Sidebar />
+            <DepthChart />
+          </div>
+        </MainStyles>
+        <Modal />
+      </IconContext.Provider>
     </GlobalProvider>
   );
 }

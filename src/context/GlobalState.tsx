@@ -1,6 +1,5 @@
-import { createContext, FC, ReactNode, useReducer } from "react";
-import { v4 as uuid } from "uuid";
-import { Player, PlayerState } from "../store/types";
+import { createContext, useReducer } from "react";
+import { GlobalProviderParams, Player, PlayerState } from "../store/types";
 import { actionTypes, playerReducer } from "./playerReducer";
 
 function init(): PlayerState {
@@ -9,30 +8,54 @@ function init(): PlayerState {
 
   return {
     ...default_state,
-    id: uuid(),
-    addPlayer: () => {
-      console.log("I SHOULDN'T RUN");
-    },
+    showModal: false,
+    editPlayer: undefined,
+    addPlayer: () => {},
+    updatePlayer: () => {},
+    openUpdateModal: () => {},
+    closeUpdateModal: () => {},
   };
 }
 
+const empty_player: Player = {
+  id: "",
+  name: "",
+  kit_number: "",
+  positions: [],
+};
+
 const GlobalContext = createContext(init());
 
-function GlobalProvider({
-  children,
-}: {
-  children: JSX.Element | JSX.Element[];
-}) {
-  const [{ players }, dispatch] = useReducer(playerReducer, init());
+function GlobalProvider({ children }: GlobalProviderParams) {
+  const [{ players, showModal }, dispatch] = useReducer(playerReducer, init());
 
-  const addPlayer = (player: Player) =>
+  function addPlayer(player: Player) {
     dispatch({ type: actionTypes.add, player });
+  }
+
+  function updatePlayer(player: Player) {
+    dispatch({ type: actionTypes.update, player });
+  }
+
+  function openUpdateModal(player: Player) {
+    dispatch({ type: actionTypes.openModal, player });
+  }
+  function closeUpdateModal() {
+    dispatch({
+      type: actionTypes.closeModal,
+      player: empty_player,
+    });
+  }
 
   return (
     <GlobalContext.Provider
       value={{
         players,
+        showModal,
         addPlayer,
+        updatePlayer,
+        openUpdateModal,
+        closeUpdateModal,
       }}
     >
       {children}

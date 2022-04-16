@@ -1,9 +1,8 @@
 import styled from "@emotion/styled";
 import { ListItem } from "./ListItem";
-import { Box, Player } from "../store/types";
+import { Box, BoxParams, Player } from "../store/types";
 
-export function Box({ details, players }: Params) {
-  console.log({ details, players });
+export function Box({ details, players }: BoxParams) {
   const filtered = players
     .filter((player: Player) => {
       const pos = player.positions;
@@ -91,16 +90,7 @@ const BoxStyles = styled.div<StyleProps>`
       box-shadow: var(--bs-inset);
     }
   }
-
-  .box-list-wrapper ul li:nth-child(even) {
-    background-color: var(--background-stripe);
-  }
 `;
-
-type Params = {
-  details: Box;
-  players: Array<Player>;
-};
 
 type StyleProps = {
   filteredClass: string;
