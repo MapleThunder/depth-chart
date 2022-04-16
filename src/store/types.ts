@@ -1,3 +1,5 @@
+import { FormikHelpers } from "formik";
+
 export {
   Player,
   Position,
@@ -61,6 +63,10 @@ type PlayerFormState = {
 
 type PlayerFormInit = {
   id?: string;
+  submitOverride?: (
+    values: PlayerFormState,
+    actions: FormikHelpers<PlayerFormState>
+  ) => {};
 };
 
 // Reducer Types

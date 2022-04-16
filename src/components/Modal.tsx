@@ -2,9 +2,10 @@ import styled from "@emotion/styled";
 import { AiOutlineClose } from "react-icons/ai";
 import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
+import { PlayerForm } from "./PlayerForm";
 
 export function Modal() {
-  const { showModal, closeUpdateModal } = useContext(GlobalContext);
+  const { showModal, closeUpdateModal, editPlayer } = useContext(GlobalContext);
 
   function handleUpdate() {
     // const player = players.find((p) => p.id == pid);
@@ -38,7 +39,9 @@ export function Modal() {
             <AiOutlineClose onClick={() => closeUpdateModal()} />
           </span>
         </div>
-        <div className="modal-body"></div>
+        <div className="modal-body">
+          <PlayerForm id={editPlayer?.id} />
+        </div>
         <div className="modal-actions">
           <button className="update-button" onClick={() => handleUpdate()}>
             Update

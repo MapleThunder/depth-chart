@@ -20,7 +20,7 @@ const initialValues: PlayerFormState = {
   positions: [],
 };
 
-export function PlayerForm({ id }: PlayerFormInit) {
+export function PlayerForm({ id, submitOverride }: PlayerFormInit) {
   const { players, addPlayer } = useContext(GlobalContext);
 
   if (id) {
@@ -48,7 +48,7 @@ export function PlayerForm({ id }: PlayerFormInit) {
     return errors;
   }
 
-  function onSubmit(
+  function submitFunc(
     values: PlayerFormState,
     actions: FormikHelpers<PlayerFormState>
   ) {
@@ -60,6 +60,8 @@ export function PlayerForm({ id }: PlayerFormInit) {
     });
     addPlayer({ ...values, positions, id: uuid() });
   }
+
+  const onSubmit = submitOverride ? submitOverride : submitFunc;
 
   return (
     <FormStyles>
