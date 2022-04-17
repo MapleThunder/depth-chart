@@ -12,7 +12,9 @@ import { v4 as uuid } from "uuid";
 import { GlobalContext } from "../context/GlobalState";
 import { positions } from "../data/positions";
 import { PlayerFormState, PlayerFormInit } from "../store/types";
+import { CancelButton } from "./CancelButton";
 import CustomSelect from "./CustomSelect";
+import { SubmitButton } from "./SubmitButton";
 
 const initialValues: PlayerFormState = {
   name: "",
@@ -20,16 +22,13 @@ const initialValues: PlayerFormState = {
   positions: [],
 };
 
-export function PlayerForm({ id, submitOverride }: PlayerFormInit) {
-  const { players, addPlayer } = useContext(GlobalContext);
+export function PlayerForm({ player, submitOverride }: PlayerFormInit) {
+  const { addPlayer, showModal, closeUpdateModal } = useContext(GlobalContext);
 
-  if (id) {
-    const player = players.find((p) => p.id == id);
-    if (player) {
-      initialValues.name = player.name;
-      initialValues.kit_number = player.kit_number;
-      initialValues.positions = player.positions;
-    }
+  if (player) {
+    initialValues.name = player.name;
+    initialValues.kit_number = player.kit_number;
+    initialValues.positions = player.positions;
   }
 
   function validate(values: PlayerFormState) {
@@ -116,7 +115,10 @@ export function PlayerForm({ id, submitOverride }: PlayerFormInit) {
                 className="error-message"
               />
             </label>
-            <button type="submit">Add Player</button>
+            <div className="form-actions">
+              <SubmitButton>Add Player</SubmitButton>
+              {showModal && <CancelButton onClick={closeUpdateModal} />}
+            </div>
           </Form>
         )}
       </Formik>
@@ -146,19 +148,5 @@ const FormStyles = styled.div`
     color: var(--error);
     padding: 2px;
     font-size: 0.8rem;
-  }
-
-  button {
-    width: 150px;
-    height: 30px;
-    background-color: var(--primary);
-    color: var(--text-colour-light);
-    border: 1px solid transparent;
-    border-radius: 5px;
-
-    &:disabled {
-      color: var(--grey);
-      background-color: var(--blue-dark);
-    }
   }
 `;

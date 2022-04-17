@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalState";
+import { empty_player } from "../util/empties";
 import { PlayerForm } from "./PlayerForm";
 
 export function Sidebar() {
@@ -10,11 +11,11 @@ export function Sidebar() {
     <SidebarStyles>
       <h2>Add Player</h2>
       <div>
-        <button type="button" onClick={clearPlayers}>
+        <button type="button" className="button-clear" onClick={clearPlayers}>
           Clear
         </button>
       </div>
-      <PlayerForm />
+      <PlayerForm player={empty_player} />
     </SidebarStyles>
   );
 }
@@ -33,7 +34,7 @@ const SidebarStyles = styled.div`
     border-bottom: solid 1px var(--background-stripe);
   }
 
-  button {
+  .button-clear {
     width: 60px;
     height: 30px;
     background-color: var(--primary);

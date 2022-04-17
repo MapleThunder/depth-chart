@@ -1,4 +1,5 @@
 import { FormikHelpers } from "formik";
+import { MouseEventHandler, ReactNode } from "react";
 
 export {
   Player,
@@ -10,12 +11,15 @@ export {
   PlayerFormInit,
   ModalFormContext,
   DeleteFormParams,
+  DeleteFormState,
   PlayerState,
   PlayerAction,
   GlobalProviderParams,
   ListItemParams,
   ModalParams,
   BoxParams,
+  CancelButtonProps,
+  ButtonProps,
 };
 
 type Player = {
@@ -64,7 +68,7 @@ type PlayerFormState = {
 };
 
 type PlayerFormInit = {
-  id?: string;
+  player: Player;
   submitOverride?: (
     values: PlayerFormState,
     actions: FormikHelpers<PlayerFormState>
@@ -82,6 +86,10 @@ type DeleteFormParams = {
   position_code: string;
 };
 
+type DeleteFormState = {
+  position: Position;
+  player: Player;
+};
 // Reducer Types
 type PlayerState = {
   players: Array<Player>;
@@ -118,4 +126,13 @@ type ModalParams = {
 type BoxParams = {
   details: Box;
   players: Array<Player>;
+};
+
+type CancelButtonProps = {
+  onClick: MouseEventHandler<HTMLButtonElement>;
+};
+
+type ButtonProps = {
+  children: ReactNode;
+  className?: string;
 };

@@ -53,18 +53,10 @@ export function Modal() {
         </div>
         <div className="modal-body">
           {modalContext?.type == "edit" ? (
-            <PlayerForm id={player.id} />
+            <PlayerForm player={player} />
           ) : (
             <DeleteForm player={player} position_code={modalContext.position} />
           )}
-        </div>
-        <div className="modal-actions">
-          <button className="update-button" onClick={() => handleUpdate()}>
-            Update
-          </button>
-          <button className="cancel-button" onClick={() => closeUpdateModal()}>
-            Cancel
-          </button>
         </div>
       </div>
     </ModalStyles>
