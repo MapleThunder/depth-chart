@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { AiOutlineClose } from "react-icons/ai";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import { PlayerForm } from "./PlayerForm";
 
@@ -13,19 +13,19 @@ export function Modal() {
     // dispatch update message
   }
 
-  // function closeOnEscKeyDown(event) {
-  //   if ((event.charCode || event.keyCode) == 27) {
-  //     onClose();
-  //   }
-  // }
+  function closeOnEscKeyDown(event: KeyboardEvent) {
+    if (event.code == "Escape") {
+      closeUpdateModal();
+    }
+  }
 
-  // useEffect(() => {
-  //   document.body.addEventListener("keydown", closeOnEscKeyDown);
+  useEffect(() => {
+    document.body.addEventListener("keydown", closeOnEscKeyDown);
 
-  //   return () => {
-  //     document.body.removeEventListener("keydown", closeOnEscKeyDown);
-  //   };
-  // }, []);
+    return () => {
+      document.body.removeEventListener("keydown", closeOnEscKeyDown);
+    };
+  }, []);
 
   return (
     <ModalStyles
