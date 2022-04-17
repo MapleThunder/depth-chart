@@ -1,5 +1,11 @@
 import { createContext, useReducer } from "react";
-import { GlobalProviderParams, Player, PlayerState } from "../store/types";
+import {
+  GlobalProviderParams,
+  ModalFormContext,
+  Player,
+  PlayerState,
+} from "../store/types";
+import { empty_context, empty_player } from "../util/empties";
 import { actionTypes, playerReducer } from "./playerReducer";
 
 function init(): PlayerState {
@@ -9,7 +15,7 @@ function init(): PlayerState {
   return {
     ...default_state,
     showModal: false,
-    editPlayer: undefined,
+    modalContext: empty_context,
     addPlayer: () => {},
     updatePlayer: () => {},
     openUpdateModal: () => {},
@@ -17,17 +23,13 @@ function init(): PlayerState {
   };
 }
 
-const empty_player: Player = {
-  id: "",
-  name: "",
-  kit_number: "",
-  positions: [],
-};
-
 const GlobalContext = createContext(init());
 
 function GlobalProvider({ children }: GlobalProviderParams) {
-  const [{ players, showModal }, dispatch] = useReducer(playerReducer, init());
+  const [{ players, showModal, modalContext }, dispatch] = useReducer(
+    playerReducer,
+    init()
+  );
 
   function addPlayer(player: Player) {
     dispatch({ type: actionTypes.add, player });
@@ -37,8 +39,8 @@ function GlobalProvider({ children }: GlobalProviderParams) {
     dispatch({ type: actionTypes.update, player });
   }
 
-  function openUpdateModal(player: Player) {
-    dispatch({ type: actionTypes.openModal, player });
+  function openModal(player: Player, context: ModalFormContext) {
+    dispatch({ type: actionTypes.openModal, player, context });
   }
 
   function closeUpdateModal() {
@@ -60,9 +62,10 @@ function GlobalProvider({ children }: GlobalProviderParams) {
       value={{
         players,
         showModal,
+        modalContext,
         addPlayer,
         updatePlayer,
-        openUpdateModal,
+        openModal,
         closeUpdateModal,
         clearPlayers,
       }}

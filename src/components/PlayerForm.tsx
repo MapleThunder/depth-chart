@@ -64,11 +64,10 @@ export function PlayerForm({ id, submitOverride }: PlayerFormInit) {
   const onSubmit = submitOverride ? submitOverride : submitFunc;
 
   return (
-    <FormStyles>
+    <FormStyles className="form-wrapper">
       <Formik {...{ initialValues, onSubmit, validate }}>
-        {({ errors, touched, values }) => (
+        {({ errors, touched }) => (
           <Form>
-            <h2>{values.id ? "Edit" : "Add"} Player</h2>
             <label>
               Player Name <br />
               <Field

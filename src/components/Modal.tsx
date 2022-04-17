@@ -3,15 +3,24 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useContext, useEffect } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import { PlayerForm } from "./PlayerForm";
+import { DeleteForm } from "./DeleteForm";
 
 export function Modal() {
-  const { showModal, closeUpdateModal, editPlayer } = useContext(GlobalContext);
+  const { showModal, closeUpdateModal, players, modalContext } =
+    useContext(GlobalContext);
+  let modal_title;
+  const player = players.find((p) => p.id == modalContext.player_id);
 
-  function handleUpdate() {
-    // const player = players.find((p) => p.id == pid);
-    // get player data
-    // dispatch update message
+  switch (modalContext.type) {
+    case "delete":
+      modal_title = `Delete Player`;
+    case "edit":
+    default:
+      modal_title = `Edit Player`;
+      break;
   }
+
+  function handleUpdate() {}
 
   function closeOnEscKeyDown(event: KeyboardEvent) {
     if (event.code == "Escape") {
@@ -27,6 +36,9 @@ export function Modal() {
     };
   }, []);
 
+  if (!player) {
+    return <ModalStyles onClick={() => closeUpdateModal()}></ModalStyles>;
+  }
   return (
     <ModalStyles
       onClick={() => closeUpdateModal()}
@@ -34,13 +46,17 @@ export function Modal() {
     >
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <h3>Edit Player</h3>
+          <h3>{modal_title}</h3>
           <span>
             <AiOutlineClose onClick={() => closeUpdateModal()} />
           </span>
         </div>
         <div className="modal-body">
-          <PlayerForm id={editPlayer?.id} />
+          {modalContext?.type == "edit" ? (
+            <PlayerForm id={player.id} />
+          ) : (
+            <DeleteForm player={player} position_code={modalContext.position} />
+          )}
         </div>
         <div className="modal-actions">
           <button className="update-button" onClick={() => handleUpdate()}>
@@ -83,5 +99,24 @@ const ModalStyles = styled.div`
     background-color: var(--white);
     transform: translateY(-200px);
     transition: all 0.3s ease-in-out;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: var(--bs);
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+
+      h3 {
+        font-size: 1.1rem;
+        font-weight: bold;
+      }
+    }
+
+    .modal-body {
+      margin-bottom: 15px;
+    }
   }
 `;

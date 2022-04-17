@@ -1,18 +1,39 @@
 import styled from "@emotion/styled";
 import { useContext } from "react";
-import { AiOutlineEdit } from "react-icons/ai";
+import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
 import { GlobalContext } from "../context/GlobalState";
 import { ListItemParams } from "../store/types";
 
-export function ListItem({ player }: ListItemParams) {
-  const { openUpdateModal } = useContext(GlobalContext);
+export function ListItem({ player, position }: ListItemParams) {
+  const { openModal } = useContext(GlobalContext);
 
   return (
     <ListItemStyles>
       <span className="player-name">{player.name}</span>
       <div className="button-wrapper">
-        <button className="edit-button" onClick={() => openUpdateModal(player)}>
+        <button
+          className="edit-button"
+          onClick={() =>
+            openModal(player, {
+              type: "edit",
+              position: "",
+              player_id: player.id,
+            })
+          }
+        >
           <AiOutlineEdit />
+        </button>
+        <button
+          className="delete-button"
+          onClick={() =>
+            openModal(player, {
+              type: "delete",
+              position,
+              player_id: player.id,
+            })
+          }
+        >
+          <AiOutlineDelete />
         </button>
       </div>
     </ListItemStyles>

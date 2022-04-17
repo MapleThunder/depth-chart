@@ -8,6 +8,8 @@ export {
   Box,
   PlayerFormState,
   PlayerFormInit,
+  ModalFormContext,
+  DeleteFormParams,
   PlayerState,
   PlayerAction,
   GlobalProviderParams,
@@ -69,14 +71,25 @@ type PlayerFormInit = {
   ) => {};
 };
 
+type ModalFormContext = {
+  type: string;
+  position: string;
+  player_id: string;
+};
+
+type DeleteFormParams = {
+  player: Player;
+  position_code: string;
+};
+
 // Reducer Types
 type PlayerState = {
   players: Array<Player>;
   showModal: boolean;
-  editPlayer?: Player;
+  modalContext: ModalFormContext;
   addPlayer: (p: Player) => void | undefined;
   updatePlayer: (p: Player) => void | undefined;
-  openUpdateModal: (p: Player, e?: boolean) => void | undefined;
+  openModal: (p: Player, context: ModalFormContext) => void | undefined;
   closeUpdateModal: () => void | undefined;
   clearPlayers: () => void | undefined;
 };
@@ -84,7 +97,7 @@ type PlayerState = {
 type PlayerAction = {
   type: string;
   player: Player;
-  open?: boolean;
+  context?: ModalFormContext;
 };
 
 type GlobalProviderParams = {
@@ -94,15 +107,12 @@ type GlobalProviderParams = {
 // Component Types
 type ListItemParams = {
   player: Player;
-  code: string;
+  position: string;
 };
 
 type ModalParams = {
-  // children: JSX.Element | JSX.Element[];
   show: boolean;
   onClose: () => void;
-  // pid: string;
-  // toggleModal: (change?: boolean) => void;
 };
 
 type BoxParams = {

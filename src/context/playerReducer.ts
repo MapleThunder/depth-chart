@@ -1,4 +1,5 @@
 import { PlayerAction, PlayerState } from "../store/types";
+import { empty_context } from "../util/empties";
 
 function playerReducer(state: PlayerState, action: PlayerAction) {
   const { type, player } = action;
@@ -34,19 +35,21 @@ function playerReducer(state: PlayerState, action: PlayerAction) {
     }
 
     case actionTypes.openModal: {
+      console.log({ player, action });
       new_state = {
         ...state,
-        editPlayer: player,
         showModal: true,
+        modalContext: action?.context || empty_context,
       };
+      console.log({ new_state });
       return new_state;
     }
 
     case actionTypes.closeModal: {
       new_state = {
         ...state,
-        editPlayer: undefined,
         showModal: false,
+        modalContext: empty_context,
       };
       return new_state;
     }
@@ -55,7 +58,6 @@ function playerReducer(state: PlayerState, action: PlayerAction) {
       new_state = {
         ...state,
         players: [],
-        editPlayer: undefined,
         showModal: false,
       };
       localStorage.setItem("depth-chart.players", JSON.stringify(new_state));

@@ -49,7 +49,7 @@ export function Box({ details, players }: BoxParams) {
       <div className="box-list-wrapper">
         <ul>
           {filtered.map((player: Player, i: number) => (
-            <ListItem key={i} player={player} code={details.position} />
+            <ListItem key={i} player={player} position={details.position} />
           ))}
         </ul>
       </div>
