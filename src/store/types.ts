@@ -78,6 +78,7 @@ type PlayerState = {
   updatePlayer: (p: Player) => void | undefined;
   openUpdateModal: (p: Player, e?: boolean) => void | undefined;
   closeUpdateModal: () => void | undefined;
+  clearPlayers: () => void | undefined;
 };
 
 type PlayerAction = {

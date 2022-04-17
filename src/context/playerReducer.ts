@@ -51,6 +51,17 @@ function playerReducer(state: PlayerState, action: PlayerAction) {
       return new_state;
     }
 
+    case actionTypes.clearPlayers: {
+      new_state = {
+        ...state,
+        players: [],
+        editPlayer: undefined,
+        showModal: false,
+      };
+      localStorage.setItem("depth-chart.players", JSON.stringify(new_state));
+      return new_state;
+    }
+
     default: {
       return state;
     }
@@ -63,6 +74,7 @@ const actionTypes = {
   delete: "DELETE_PLAYER",
   openModal: "OPEN_MODAL",
   closeModal: "CLOSE_MODAL",
+  clearPlayers: "CLEAR_PLAYERS",
 };
 
 export { actionTypes, playerReducer };

@@ -40,9 +40,17 @@ function GlobalProvider({ children }: GlobalProviderParams) {
   function openUpdateModal(player: Player) {
     dispatch({ type: actionTypes.openModal, player });
   }
+
   function closeUpdateModal() {
     dispatch({
       type: actionTypes.closeModal,
+      player: empty_player,
+    });
+  }
+
+  function clearPlayers() {
+    dispatch({
+      type: actionTypes.clearPlayers,
       player: empty_player,
     });
   }
@@ -56,6 +64,7 @@ function GlobalProvider({ children }: GlobalProviderParams) {
         updatePlayer,
         openUpdateModal,
         closeUpdateModal,
+        clearPlayers,
       }}
     >
       {children}
