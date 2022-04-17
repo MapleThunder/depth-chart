@@ -15,20 +15,17 @@ import { PlayerFormState, PlayerFormInit } from "../store/types";
 import { CancelButton } from "./CancelButton";
 import CustomSelect from "./CustomSelect";
 import { SubmitButton } from "./SubmitButton";
+import { empty_form_state } from "../util/empties";
 
-const initialValues: PlayerFormState = {
-  name: "",
-  kit_number: "",
-  positions: [],
-};
+export function PlayerForm({ player, mode = "add_player" }: PlayerFormInit) {
+  const { addPlayer, closeUpdateModal, updatePlayer, showModal } =
+    useContext(GlobalContext);
 
-export function PlayerForm({ player, submitOverride }: PlayerFormInit) {
-  const { addPlayer, showModal, closeUpdateModal } = useContext(GlobalContext);
-
+  let initialValues;
   if (player) {
-    initialValues.name = player.name;
-    initialValues.kit_number = player.kit_number;
-    initialValues.positions = player.positions;
+    initialValues = { ...player };
+  } else {
+    initialValues = { ...empty_form_state };
   }
 
   function validate(values: PlayerFormState) {
@@ -47,20 +44,30 @@ export function PlayerForm({ player, submitOverride }: PlayerFormInit) {
     return errors;
   }
 
-  function submitFunc(
+  function onSubmit(
     values: PlayerFormState,
     actions: FormikHelpers<PlayerFormState>
   ) {
-    actions.resetForm();
+    actions.resetForm({ values: empty_form_state });
     const positions = values.positions.map((pos) => {
       if (typeof pos.weight != "number") {
         return { ...pos, weight: 0 };
       } else return pos;
     });
-    addPlayer({ ...values, positions, id: uuid() });
-  }
+    switch (mode) {
+      case "add_player":
+        addPlayer({ ...values, positions, id: uuid() });
+        break;
 
-  const onSubmit = submitOverride ? submitOverride : submitFunc;
+      case "update_player":
+        updatePlayer({ ...values, positions, id: player.id });
+        break;
+    }
+
+    if (showModal) {
+      closeUpdateModal();
+    }
+  }
 
   return (
     <FormStyles className="form-wrapper">
@@ -116,8 +123,12 @@ export function PlayerForm({ player, submitOverride }: PlayerFormInit) {
               />
             </label>
             <div className="form-actions">
-              <SubmitButton>Add Player</SubmitButton>
-              {showModal && <CancelButton onClick={closeUpdateModal} />}
+              <SubmitButton>
+                {mode == "add_player" ? "Add" : "Update"} Player
+              </SubmitButton>
+              {mode == "update_player" && (
+                <CancelButton onClick={closeUpdateModal} />
+              )}
             </div>
           </Form>
         )}

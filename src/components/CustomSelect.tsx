@@ -1,15 +1,6 @@
 import { FieldProps } from "formik";
 import Select from "react-select";
-
-type Option = {
-  label: string;
-  value: string;
-};
-
-type CustomSelectProps = {
-  label: string;
-  options: Array<Option>;
-};
+import { CustomSelectProps } from "../store/types";
 
 export function CustomSelect({
   options,
@@ -22,9 +13,8 @@ export function CustomSelect({
       {...field}
       {...props}
       options={options}
-      value={
-        options ? options.find((option) => option.value == field.value) : ""
-      }
+      escapeClearsValue={true}
+      isClearable={true}
       onChange={(option) => {
         setFieldValue(field.name, option);
       }}

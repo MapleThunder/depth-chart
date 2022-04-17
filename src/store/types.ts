@@ -20,6 +20,8 @@ export {
   BoxParams,
   CancelButtonProps,
   ButtonProps,
+  Option,
+  CustomSelectProps,
 };
 
 type Player = {
@@ -69,10 +71,7 @@ type PlayerFormState = {
 
 type PlayerFormInit = {
   player: Player;
-  submitOverride?: (
-    values: PlayerFormState,
-    actions: FormikHelpers<PlayerFormState>
-  ) => {};
+  mode?: string;
 };
 
 type ModalFormContext = {
@@ -139,4 +138,14 @@ type CancelButtonProps = {
 type ButtonProps = {
   children: ReactNode;
   className?: string;
+};
+
+type Option = {
+  label: string;
+  value: string;
+};
+
+type CustomSelectProps = {
+  label: string;
+  options: Array<Option>;
 };

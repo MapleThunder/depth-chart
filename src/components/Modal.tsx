@@ -4,6 +4,9 @@ import { useContext, useEffect } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import { PlayerForm } from "./PlayerForm";
 import { DeleteForm } from "./DeleteForm";
+import { PlayerFormState } from "../store/types";
+import { FormikHelpers } from "formik";
+import { empty_form_state } from "../util/empties";
 
 export function Modal() {
   const { showModal, closeUpdateModal, players, modalContext } =
@@ -19,8 +22,6 @@ export function Modal() {
       modal_title = `Edit Player`;
       break;
   }
-
-  function handleUpdate() {}
 
   function closeOnEscKeyDown(event: KeyboardEvent) {
     if (event.code == "Escape") {
@@ -53,7 +54,7 @@ export function Modal() {
         </div>
         <div className="modal-body">
           {modalContext?.type == "edit" ? (
-            <PlayerForm player={player} />
+            <PlayerForm player={player} mode="update_player" />
           ) : (
             <DeleteForm player={player} position_code={modalContext.position} />
           )}
