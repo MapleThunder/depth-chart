@@ -100,6 +100,10 @@ type PlayerState = {
   openModal: (p: Player, context: ModalFormContext) => void | undefined;
   closeUpdateModal: () => void | undefined;
   clearPlayers: () => void | undefined;
+  deletePlayerPosition: (
+    p: Player,
+    context: ModalFormContext
+  ) => void | undefined;
 };
 
 type PlayerAction = {

@@ -57,6 +57,10 @@ function GlobalProvider({ children }: GlobalProviderParams) {
     });
   }
 
+  function deletePlayerPosition(player: Player, context: ModalFormContext) {
+    dispatch({ type: actionTypes.delete, player, context });
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -68,6 +72,7 @@ function GlobalProvider({ children }: GlobalProviderParams) {
         openModal,
         closeUpdateModal,
         clearPlayers,
+        deletePlayerPosition,
       }}
     >
       {children}

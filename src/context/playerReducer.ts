@@ -9,7 +9,7 @@ function playerReducer(state: PlayerState, action: PlayerAction) {
     case actionTypes.add: {
       new_state = { ...state };
       new_state.players = [...state.players, action.player];
-      localStorage.setItem("depth-chart.players", JSON.stringify(new_state));
+      save(new_state);
       return new_state;
     }
 
@@ -31,17 +31,40 @@ function playerReducer(state: PlayerState, action: PlayerAction) {
     }
 
     case actionTypes.delete: {
-      console.log("Not yet implemented");
+      let new_players;
+
+      if (player.positions.length > 1) {
+        // Remove only the single position
+        const filtered_positions = player.positions.filter(
+          (pos) => pos.value != action.context?.position
+        );
+        const updated_player = {
+          ...player,
+          positions: filtered_positions,
+        };
+        const filtered_players = state.players.filter((p) => p.id != player.id);
+        new_players = [...filtered_players, updated_player];
+      } else {
+        // Only 1 position remaining, remove entire player object
+        new_players = state.players.filter((p) => p.id != player.id);
+      }
+
+      new_state = {
+        ...state,
+        players: new_players,
+        showModal: false,
+        modalContext: empty_context,
+      };
+      save(new_state);
+      return new_state;
     }
 
     case actionTypes.openModal: {
-      console.log({ player, action });
       new_state = {
         ...state,
         showModal: true,
         modalContext: action?.context || empty_context,
       };
-      console.log({ new_state });
       return new_state;
     }
 
@@ -60,7 +83,7 @@ function playerReducer(state: PlayerState, action: PlayerAction) {
         players: [],
         showModal: false,
       };
-      localStorage.setItem("depth-chart.players", JSON.stringify(new_state));
+      save(new_state);
       return new_state;
     }
 
@@ -78,5 +101,14 @@ const actionTypes = {
   closeModal: "CLOSE_MODAL",
   clearPlayers: "CLEAR_PLAYERS",
 };
+
+function save(state: PlayerState) {
+  localStorage.setItem("depth-chart.players", JSON.stringify(state));
+}
+
+function load(): PlayerState {
+  const json_state = localStorage.getItem("depth-chart.players");
+  return JSON.parse(json_state || "");
+}
 
 export { actionTypes, playerReducer };

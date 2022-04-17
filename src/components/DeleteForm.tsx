@@ -8,7 +8,7 @@ import { empty_position } from "../util/empties";
 import { CancelButton } from "./CancelButton";
 
 export function DeleteForm({ player, position_code }: DeleteFormParams) {
-  const { closeUpdateModal } = useContext(GlobalContext);
+  const { closeUpdateModal, deletePlayerPosition } = useContext(GlobalContext);
   const position =
     positions.find((p) => p.value == position_code) || empty_position;
   const initialValues: DeleteFormState = {
@@ -17,8 +17,12 @@ export function DeleteForm({ player, position_code }: DeleteFormParams) {
   };
 
   function onSubmit(values: DeleteFormState) {
-    // Delete player position
-    console.log({ values });
+    const { player, position } = values;
+    deletePlayerPosition(player, {
+      type: "delete",
+      position: position.value,
+      player_id: player.id,
+    });
   }
 
   return (
@@ -27,7 +31,7 @@ export function DeleteForm({ player, position_code }: DeleteFormParams) {
         {() => (
           <Form>
             <p>
-              Delete {position.label} from {player.name}
+              Delete {player.name} from {position.label} position.
             </p>
             <div className="form-actions">
               <button type="submit" className="button-delete">
@@ -42,4 +46,8 @@ export function DeleteForm({ player, position_code }: DeleteFormParams) {
   );
 }
 
-const DeleteFormStyles = styled.div``;
+const DeleteFormStyles = styled.div`
+  .form-actions {
+    margin-top: 15px;
+  }
+`;
