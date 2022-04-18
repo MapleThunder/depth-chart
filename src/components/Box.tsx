@@ -79,7 +79,6 @@ const BoxStyles = styled.div<StyleProps>`
     background-color: var(${(props) => props.filteredClass});
 
     .box-label {
-      font-weight: 700;
       font-size: 1.2rem;
     }
     .count-pill {
@@ -88,6 +87,14 @@ const BoxStyles = styled.div<StyleProps>`
       margin-left: 10px;
       border: 1px solid var(--black);
       box-shadow: var(--bs-inset);
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    .box-label-wrapper {
+      .box-label {
+        font-size: 0.9rem;
+      }
     }
   }
 `;

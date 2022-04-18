@@ -24,6 +24,7 @@ export function App() {
 }
 
 const MainStyles = styled.main`
+  width: 100%;
   display: flex;
   justify-content: center;
 
@@ -33,5 +34,10 @@ const MainStyles = styled.main`
     grid-gap: 10px;
     width: 100%;
     max-width: var(--max-width);
+
+    @media screen and (max-width: 900px) {
+      display: flex;
+      flex-direction: column;
+    }
   }
 `;

@@ -27,6 +27,7 @@
   --bad: rgba(240, 71, 71, 0.7);
   --error: rgba(233, 3, 3, 0.897);
   --disabled: #b0b0b0;
+  --highlight: rgba(74, 153, 201, 0.4);
 
   --debug: dashed 1px red;
   --br: 7px;
@@ -34,6 +35,8 @@
   --bs-small: 1px 1px 2px var(--black);
   --bs-inset: inset 1px 1px 2px var(--black);
   --max-width: 1000px;
+  --mobile-width: 900px;
+  --font-family: Nunito, Verdana, Geneva, Tahoma, sans-serif;
 }
 
 html,
@@ -44,7 +47,7 @@ body,
 }
 
 body {
-  font-family: Nunito, Verdana, Geneva, Tahoma, sans-serif;
+  font-family: var(--font-family);
   background-color: var(--pitch);
 }
 

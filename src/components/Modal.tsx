@@ -4,9 +4,6 @@ import { useContext, useEffect } from "react";
 import { GlobalContext } from "../context/GlobalState";
 import { PlayerForm } from "./PlayerForm";
 import { DeleteForm } from "./DeleteForm";
-import { PlayerFormState } from "../store/types";
-import { FormikHelpers } from "formik";
-import { empty_form_state } from "../util/empties";
 
 export function Modal() {
   const { showModal, closeUpdateModal, players, modalContext } =
@@ -95,6 +92,11 @@ const ModalStyles = styled.div`
     padding: 20px;
     border-radius: 5px;
     box-shadow: var(--bs);
+
+    @media screen and (max-width: 900px) {
+      width: 80vw;
+      margin-left: -5%;
+    }
 
     .modal-header {
       display: flex;
