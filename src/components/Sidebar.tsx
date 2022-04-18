@@ -13,6 +13,7 @@ export function Sidebar() {
 }
 
 const SidebarStyles = styled.div`
+  max-height: 260px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 60px auto;
