@@ -13,7 +13,7 @@ import { GlobalContext } from "../context/GlobalState";
 import { positions } from "../data/positions";
 import { PlayerFormState, PlayerFormInit } from "../store/types";
 import { CancelButton } from "./CancelButton";
-import CustomSelect from "./CustomSelect";
+import { CustomSelect } from "./CustomSelect";
 import { SubmitButton } from "./SubmitButton";
 import { empty_form_state, empty_position } from "../util/empties";
 import { LinkButton } from "./LinkButton";
