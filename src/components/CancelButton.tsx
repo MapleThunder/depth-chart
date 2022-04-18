@@ -17,6 +17,5 @@ const CancelButtonStyles = styled.button`
   background-color: transparent;
   border: 1px solid transparent;
   text-decoration: underline;
-  color: var(--error);
   cursor: pointer;
 `;

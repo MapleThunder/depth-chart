@@ -22,6 +22,7 @@ export {
   ButtonProps,
   Option,
   CustomSelectProps,
+  LinkButtonProps,
 };
 
 type Player = {
@@ -148,4 +149,10 @@ type Option = {
 type CustomSelectProps = {
   label: string;
   options: Array<Option>;
+};
+
+type LinkButtonProps = {
+  onClick: MouseEventHandler<HTMLButtonElement>;
+  children: ReactNode;
+  className?: string;
 };

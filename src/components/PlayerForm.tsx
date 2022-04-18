@@ -15,11 +15,17 @@ import { PlayerFormState, PlayerFormInit } from "../store/types";
 import { CancelButton } from "./CancelButton";
 import CustomSelect from "./CustomSelect";
 import { SubmitButton } from "./SubmitButton";
-import { empty_form_state } from "../util/empties";
+import { empty_form_state, empty_position } from "../util/empties";
+import { LinkButton } from "./LinkButton";
 
 export function PlayerForm({ player, mode = "add_player" }: PlayerFormInit) {
-  const { addPlayer, closeUpdateModal, updatePlayer, showModal } =
-    useContext(GlobalContext);
+  const {
+    addPlayer,
+    closeUpdateModal,
+    updatePlayer,
+    showModal,
+    deletePlayerPosition,
+  } = useContext(GlobalContext);
 
   let initialValues;
   if (player) {
@@ -67,6 +73,13 @@ export function PlayerForm({ player, mode = "add_player" }: PlayerFormInit) {
     if (showModal) {
       closeUpdateModal();
     }
+  }
+
+  function onRemovePlayer() {
+    deletePlayerPosition(
+      { ...player, positions: [empty_position] },
+      { type: "delete", player_id: player.id, position: "" }
+    );
   }
 
   return (
@@ -123,11 +136,19 @@ export function PlayerForm({ player, mode = "add_player" }: PlayerFormInit) {
               />
             </label>
             <div className="form-actions">
-              <SubmitButton>
-                {mode == "add_player" ? "Add" : "Update"} Player
-              </SubmitButton>
+              <div>
+                <SubmitButton>
+                  {mode == "add_player" ? "Add" : "Update"} Player
+                </SubmitButton>
+                {mode == "update_player" && (
+                  <CancelButton onClick={closeUpdateModal} />
+                )}
+              </div>
+
               {mode == "update_player" && (
-                <CancelButton onClick={closeUpdateModal} />
+                <LinkButton onClick={onRemovePlayer} className="button-remove">
+                  Remove Player
+                </LinkButton>
               )}
             </div>
           </Form>
@@ -155,9 +176,19 @@ const FormStyles = styled.div`
     }
   }
 
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .error-message {
     color: var(--error);
     padding: 2px;
     font-size: 0.8rem;
+  }
+
+  .button-remove {
+    color: var(--error);
+    justify-self: end;
   }
 `;
