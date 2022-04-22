@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { ListItem } from "./ListItem";
 import { Box, BoxParams, Player } from "../store/types";
+import { Droppable } from "react-beautiful-dnd";
 
 export function Box({ details, players }: BoxParams) {
   const filtered = players
@@ -46,13 +47,21 @@ export function Box({ details, players }: BoxParams) {
         <span className="box-label">{details.label}</span>
         <div className="count-pill">{filtered.length}</div>
       </div>
-      <div className="box-list-wrapper">
-        <ul>
-          {filtered.map((player: Player, i: number) => (
-            <ListItem key={i} player={player} position={details.position} />
-          ))}
-        </ul>
-      </div>
+      <Droppable droppableId={details.position}>
+        {(provided) => (
+          <div
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+            className="box-list-wrapper"
+          >
+            <ul>
+              {filtered.map((player: Player, i: number) => (
+                <ListItem key={i} player={player} position={details.position} />
+              ))}
+            </ul>
+          </div>
+        )}
+      </Droppable>
     </BoxStyles>
   );
 }

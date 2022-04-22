@@ -1,28 +1,41 @@
 import styled from "@emotion/styled";
 import { useContext } from "react";
 import { AiOutlineEdit } from "react-icons/ai";
+import { Draggable } from "react-beautiful-dnd";
 import { GlobalContext } from "../context/GlobalState";
 import { ListItemParams } from "../store/types";
 
 export function ListItem({ player, position }: ListItemParams) {
   const { openModal } = useContext(GlobalContext);
+  const player_position = player.positions
+    .filter((p) => p.value == position)
+    .pop();
+  let weight = player_position?.weight || 0;
 
   return (
-    <ListItemStyles>
-      <button
-        onClick={() =>
-          openModal(player, {
-            type: "edit",
-            position: "",
-            player_id: player.id,
-          })
-        }
-        className="player-selector"
-      >
-        {player.name}
-        <AiOutlineEdit />
-      </button>
-    </ListItemStyles>
+    <Draggable draggableId={player.id} index={weight}>
+      {(provided) => (
+        <ListItemStyles
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+          ref={provided.innerRef}
+        >
+          <button
+            // onClick={() =>
+            //   openModal(player, {
+            //     type: "edit",
+            //     position: "",
+            //     player_id: player.id,
+            //   })
+            // }
+            className="player-selector"
+          >
+            {player.name}
+            <AiOutlineEdit />
+          </button>
+        </ListItemStyles>
+      )}
+    </Draggable>
   );
 }
 
