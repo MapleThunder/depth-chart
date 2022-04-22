@@ -24,7 +24,6 @@ const ClearButtonStyles = styled.button`
   font-weight: 700;
   border: 1px solid transparent;
   border-radius: 5px;
-  margin-bottom: 10px;
 
   &:disabled {
     color: var(--grey);

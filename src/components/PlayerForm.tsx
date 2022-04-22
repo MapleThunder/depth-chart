@@ -159,6 +159,8 @@ export function PlayerForm({ player, mode = "add_player" }: PlayerFormInit) {
 }
 
 const FormStyles = styled.div`
+  max-width: 300px;
+
   form {
     display: grid;
     grid-template-columns: 1fr;

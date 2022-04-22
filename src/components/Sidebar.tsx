@@ -5,25 +5,30 @@ import { PlayerForm } from "./PlayerForm";
 export function Sidebar() {
   return (
     <SidebarStyles>
-      <h2>Add Player</h2>
-      <div className="button-wrapper"></div>
-      <PlayerForm player={empty_player} />
+      <div className="sidebar-wrapper">
+        <h2>Add Player</h2>
+        <div className="button-wrapper"></div>
+        <PlayerForm player={empty_player} />
+      </div>
     </SidebarStyles>
   );
 }
 
 const SidebarStyles = styled.div`
-  max-height: 260px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 60px auto;
-  padding: 20px;
+  max-height: 300px;
+  .sidebar-wrapper {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
   background-color: var(--grey);
   border-radius: 0 0 5px 5px;
 
-  @media screen and (max-width: 900px) {
-    width: 100%;
-    padding-right: 0;
+  @media screen and (max-width: 600px) {
+    width: 100vw;
+    padding: 0;
+    border-radius: 0;
   }
 
   h2 {

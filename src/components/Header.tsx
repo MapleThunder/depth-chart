@@ -13,9 +13,8 @@ export function Header() {
 }
 
 const HeaderStlyes = styled.header`
-  width: 100%;
+  width: 100vw;
   background-color: var(--primary);
-  padding: 10px;
   display: flex;
   justify-content: center;
 
@@ -24,11 +23,18 @@ const HeaderStlyes = styled.header`
     max-width: var(--max-width);
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+
+    button {
+      vertical-align: middle;
+    }
   }
 
   @media screen and (max-width: 900px) {
     .wrapper {
       max-width: 600px;
+      padding: 10px;
     }
   }
 `;
