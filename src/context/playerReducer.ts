@@ -1,5 +1,6 @@
 import { PlayerAction, PlayerState } from "../store/types";
 import { empty_context } from "../util/empties";
+import { adjustWeights } from "../util/weightUtils";
 
 function playerReducer(state: PlayerState, action: PlayerAction) {
   const { type, player } = action;
@@ -8,7 +9,7 @@ function playerReducer(state: PlayerState, action: PlayerAction) {
   switch (type) {
     case actionTypes.add: {
       new_state = { ...state };
-      new_state.players = [...state.players, action.player];
+      new_state.players = adjustWeights([...state.players, action.player]);
       save(new_state);
       return new_state;
     }

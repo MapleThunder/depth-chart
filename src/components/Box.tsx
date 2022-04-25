@@ -2,33 +2,13 @@ import styled from "@emotion/styled";
 import { ListItem } from "./ListItem";
 import { Box, BoxParams, Player } from "../store/types";
 import { Droppable } from "react-beautiful-dnd";
+import { byPosition } from "../util/filters";
+import { GlobalContext } from "../context/GlobalState";
+import { useContext } from "react";
 
-export function Box({ details, players }: BoxParams) {
-  const filtered = players
-    .filter((player: Player) => {
-      const pos = player.positions;
-      for (let i = 0; i < pos.length; i++) {
-        if (pos[i].value == details.position) {
-          return true;
-        }
-      }
-      return false;
-    })
-    .sort(function (a: Player, b: Player) {
-      let r_a: number = 0,
-        r_b: number = 0;
-      a.positions.forEach((p) => {
-        if (p.value == details.position) {
-          r_a = p.weight;
-        }
-      });
-      b.positions.forEach((p) => {
-        if (p.value == details.position) {
-          r_b = p.weight;
-        }
-      });
-      return r_b - r_a;
-    });
+export function Box({ details }: BoxParams) {
+  const { players } = useContext(GlobalContext);
+  const filtered = byPosition(players, details.position);
 
   function getFilteredClass(num: number): string {
     let colour = "--bad";
@@ -56,8 +36,13 @@ export function Box({ details, players }: BoxParams) {
           >
             <ul>
               {filtered.map((player: Player, i: number) => (
-                <ListItem key={i} player={player} position={details.position} />
+                <ListItem
+                  key={`${details.position}-${player.id}`}
+                  player={player}
+                  position={details.position}
+                />
               ))}
+              {provided.placeholder}
             </ul>
           </div>
         )}

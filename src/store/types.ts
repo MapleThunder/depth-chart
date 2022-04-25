@@ -129,7 +129,6 @@ type ModalParams = {
 
 type BoxParams = {
   details: Box;
-  players: Array<Player>;
 };
 
 type CancelButtonProps = {

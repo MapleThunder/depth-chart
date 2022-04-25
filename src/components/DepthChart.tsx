@@ -1,16 +1,11 @@
-import { useContext } from "react";
 import styled from "@emotion/styled";
 import { boxes } from "../data/boxes";
 import { Box } from "./Box";
-import { GlobalContext } from "../context/GlobalState";
 
 export function DepthChart() {
-  const { players } = useContext(GlobalContext);
-
   return (
     <ChartStyles>
-      {boxes &&
-        boxes.map((box, i) => <Box details={box} players={players} key={i} />)}
+      {boxes && boxes.map((box, i) => <Box details={box} key={i} />)}
     </ChartStyles>
   );
 }

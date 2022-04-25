@@ -1,78 +1,104 @@
 import styled from "@emotion/styled";
-import { useContext } from "react";
+// import { useContext } from "react";
 import { AiOutlineEdit } from "react-icons/ai";
+import { VscGrabber } from "react-icons/vsc";
 import { Draggable } from "react-beautiful-dnd";
-import { GlobalContext } from "../context/GlobalState";
+// import { GlobalContext } from "../context/GlobalState";
 import { ListItemParams } from "../store/types";
 
 export function ListItem({ player, position }: ListItemParams) {
-  const { openModal } = useContext(GlobalContext);
+  // const { openModal } = useContext(GlobalContext);
   const player_position = player.positions
     .filter((p) => p.value == position)
     .pop();
   let weight = player_position?.weight || 0;
 
   return (
-    <Draggable draggableId={player.id} index={weight}>
-      {(provided) => (
-        <ListItemStyles
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-          ref={provided.innerRef}
-        >
-          <button
-            // onClick={() =>
-            //   openModal(player, {
-            //     type: "edit",
-            //     position: "",
-            //     player_id: player.id,
-            //   })
-            // }
-            className="player-selector"
+    <Draggable draggableId={`${position}-${player.id}`} index={weight}>
+      {(provided, snapshot) => (
+        <ListItemStyles>
+          <div
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            ref={provided.innerRef}
+            style={getItemStyle(
+              provided.draggableProps.style,
+              snapshot.isDragging
+            )}
+            className="item-wrapper"
           >
-            {player.name}
-            <AiOutlineEdit />
-          </button>
+            <div>
+              <VscGrabber />
+            </div>
+            <button
+              // onClick={() =>
+              //   openModal(player, {
+              //     type: "edit",
+              //     position: "",
+              //     player_id: player.id,
+              //   })
+              // }
+              className="player-selector"
+            >
+              {player.name}
+              <AiOutlineEdit />
+            </button>
+          </div>
         </ListItemStyles>
       )}
     </Draggable>
   );
 }
 
+function getItemStyle(draggableStyle: any, isDragging: boolean): {} {
+  return {
+    userSelect: "none",
+    background: isDragging ? "lightgreen" : "transparent",
+    margin: `0 0 8px 0`,
+    ...draggableStyle,
+  };
+}
+
 const ListItemStyles = styled.li`
-  display: flex;
   height: 30px;
-  align-items: center;
-  justify-content: center;
   border-bottom: 1px solid var(--background-stripe);
 
   &:last-child {
     border-bottom: 1px solid transparent;
   }
 
-  button.player-selector {
-    border: transparent;
-    background: transparent;
-    font-family: var(--font-family);
-    font-size: 1rem;
-    width: 100%;
-    height: 100%;
+  .item-wrapper {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 10px;
+    padding: 0 5px;
 
-    &:hover,
-    &:focus {
-      background-color: var(--highlight);
-    }
+    button.player-selector {
+      border: transparent;
+      background: transparent;
+      font-family: var(--font-family);
+      font-size: 1rem;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
 
-    .react-icon {
-      color: var(--disabled);
-      font-size: 1.2rem;
-      vertical-align: middle;
-    }
+      &:hover,
+      &:focus {
+        background-color: var(--highlight);
+      }
 
-    @media screen and (max-width: 900px) {
-      font-size: 0.9rem;
+      .react-icon {
+        color: var(--disabled);
+        font-size: 1.2rem;
+        vertical-align: middle;
+      }
+
+      @media screen and (max-width: 900px) {
+        font-size: 0.9rem;
+      }
     }
   }
 `;
