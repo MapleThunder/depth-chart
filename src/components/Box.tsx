@@ -68,7 +68,7 @@ const BoxStyles = styled.div<StyleProps>`
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid var(--black);
-    border-radius: var(--br) var(--br) 0 0;
+    border-radius: 5px 5px 0 0;
     padding: 5px 10px;
     margin: -5px 0 0 0;
     background-color: var(${(props) => props.filteredClass});
