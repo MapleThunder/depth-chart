@@ -54,7 +54,8 @@ function getItemStyle(draggableStyle: any, isDragging: boolean): {} {
   return {
     userSelect: "none",
     background: isDragging ? "lightgreen" : "transparent",
-    margin: `0 0 8px 0`,
+    margin: 0,
+    height: "100%",
     ...draggableStyle,
   };
 }
@@ -72,8 +73,8 @@ const ListItemStyles = styled.li`
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin: 0 10px;
     padding: 0 5px;
+    margin: 0 10px;
 
     button.player-selector {
       border: transparent;
@@ -84,6 +85,7 @@ const ListItemStyles = styled.li`
       height: 100%;
       display: flex;
       justify-content: space-between;
+      align-items: center;
 
       &:hover,
       &:focus {
