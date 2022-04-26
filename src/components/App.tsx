@@ -9,66 +9,20 @@ import { Modal } from "./Modal";
 import { Player } from "../store/types";
 import { byPosition } from "../util/filters";
 import { useContext } from "react";
+import { resetWeights } from "../util/weightUtils";
 
 export function App() {
-  const { players } = useContext(GlobalContext);
-
-  function onDragEnd(result: DropResult): void {
-    const { source, destination, draggableId, reason } = result;
-    const filtered_players = byPosition(players, source.droppableId);
-
-    if (!destination) {
-      return;
-    }
-
-    if (source.droppableId != destination.droppableId) {
-      return;
-    }
-
-    console.log({ source, destination, draggableId, reason });
-    const reordered_list = reorder(
-      filtered_players,
-      source.index,
-      destination.index
-    );
-    console.log({ reordered_list });
-
-    // let state: IAppState = { ...this.state };
-
-    // if (source.droppableId === "droppable2") {
-    //   state = { ...this.state, selected: items };
-    // } else if (source.droppableId === "droppable") {
-    //   state = { ...this.state, items };
-    // }
-
-    // this.setState(state);
-  }
-
-  function reorder(
-    list: Player[],
-    startIndex: number,
-    endIndex: number
-  ): Player[] {
-    const result = [...list];
-    const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
-
-    return result;
-  }
-
   return (
     <GlobalProvider>
       <IconContext.Provider value={{ className: "react-icon" }}>
-        <DragDropContext onDragEnd={onDragEnd}>
-          <Header />
-          <MainStyles>
-            <div className="wrapper">
-              <Sidebar />
-              <DepthChart />
-            </div>
-          </MainStyles>
-          <Modal />
-        </DragDropContext>
+        <Header />
+        <MainStyles>
+          <div className="wrapper">
+            <Sidebar />
+            <DepthChart />
+          </div>
+        </MainStyles>
+        <Modal />
       </IconContext.Provider>
     </GlobalProvider>
   );

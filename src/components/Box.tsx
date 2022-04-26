@@ -40,6 +40,7 @@ export function Box({ details }: BoxParams) {
                   key={`${details.position}-${player.id}`}
                   player={player}
                   position={details.position}
+                  index={i}
                 />
               ))}
               {provided.placeholder}

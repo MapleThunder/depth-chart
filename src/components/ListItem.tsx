@@ -1,20 +1,24 @@
 import styled from "@emotion/styled";
-// import { useContext } from "react";
+import { useContext } from "react";
 import { AiOutlineEdit } from "react-icons/ai";
 import { VscGrabber } from "react-icons/vsc";
 import { Draggable } from "react-beautiful-dnd";
-// import { GlobalContext } from "../context/GlobalState";
+import { GlobalContext } from "../context/GlobalState";
 import { ListItemParams } from "../store/types";
 
-export function ListItem({ player, position }: ListItemParams) {
-  // const { openModal } = useContext(GlobalContext);
+export function ListItem({ player, position, index }: ListItemParams) {
+  const { openModal } = useContext(GlobalContext);
   const player_position = player.positions
     .filter((p) => p.value == position)
     .pop();
   let weight = player_position?.weight || 0;
 
   return (
-    <Draggable draggableId={`${position}-${player.id}`} index={weight}>
+    <Draggable
+      key={`${position}::${player.id}`}
+      draggableId={`${position}::${player.id}`}
+      index={index}
+    >
       {(provided, snapshot) => (
         <ListItemStyles>
           <div
@@ -31,13 +35,13 @@ export function ListItem({ player, position }: ListItemParams) {
               <VscGrabber />
             </div>
             <button
-              // onClick={() =>
-              //   openModal(player, {
-              //     type: "edit",
-              //     position: "",
-              //     player_id: player.id,
-              //   })
-              // }
+              onClick={() =>
+                openModal(player, {
+                  type: "edit",
+                  position: "",
+                  player_id: player.id,
+                })
+              }
               className="player-selector"
             >
               {player.name}

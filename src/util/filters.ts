@@ -26,6 +26,6 @@ function byPosition(players: Player[], position: string) {
           r_b = p.weight;
         }
       });
-      return r_b - r_a;
+      return r_a - r_b;
     });
 }

@@ -1,6 +1,5 @@
 import { PlayerAction, PlayerState } from "../store/types";
 import { empty_context } from "../util/empties";
-import { adjustWeights } from "../util/weightUtils";
 
 function playerReducer(state: PlayerState, action: PlayerAction) {
   const { type, player } = action;
@@ -9,7 +8,7 @@ function playerReducer(state: PlayerState, action: PlayerAction) {
   switch (type) {
     case actionTypes.add: {
       new_state = { ...state };
-      new_state.players = adjustWeights([...state.players, action.player]);
+      new_state.players = [...state.players, action.player];
       save(new_state);
       return new_state;
     }
@@ -88,6 +87,14 @@ function playerReducer(state: PlayerState, action: PlayerAction) {
       return new_state;
     }
 
+    case actionTypes.overwrite:
+      new_state = { ...state };
+      if (action.bulk) {
+        new_state.players = action.bulk;
+      }
+      save(new_state);
+      return new_state;
+
     default: {
       return state;
     }
@@ -101,6 +108,7 @@ const actionTypes = {
   openModal: "OPEN_MODAL",
   closeModal: "CLOSE_MODAL",
   clearPlayers: "CLEAR_PLAYERS",
+  overwrite: "OVERWRITE_PLAYERS",
 };
 
 function save(state: PlayerState) {

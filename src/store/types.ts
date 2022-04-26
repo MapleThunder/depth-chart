@@ -104,12 +104,14 @@ type PlayerState = {
     p: Player,
     context: ModalFormContext
   ) => void | undefined;
+  overwritePlayers: (bulk: Player[]) => void | undefined;
 };
 
 type PlayerAction = {
   type: string;
   player: Player;
   context?: ModalFormContext;
+  bulk?: Player[];
 };
 
 type GlobalProviderParams = {
@@ -120,6 +122,7 @@ type GlobalProviderParams = {
 type ListItemParams = {
   player: Player;
   position: string;
+  index: number;
 };
 
 type ModalParams = {

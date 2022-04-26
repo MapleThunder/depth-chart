@@ -61,6 +61,10 @@ function GlobalProvider({ children }: GlobalProviderParams) {
     dispatch({ type: actionTypes.delete, player, context });
   }
 
+  function overwritePlayers(bulk: Player[]) {
+    dispatch({ type: actionTypes.overwrite, player: empty_player, bulk });
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -73,6 +77,7 @@ function GlobalProvider({ children }: GlobalProviderParams) {
         closeUpdateModal,
         clearPlayers,
         deletePlayerPosition,
+        overwritePlayers,
       }}
     >
       {children}
