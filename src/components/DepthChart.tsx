@@ -95,4 +95,8 @@ const ChartStyles = styled.div`
     grid-column: 2/3;
     grid-row: 6/7;
   }
+
+  @media screen and (max-width: 900px) {
+    padding: 20px 3px;
+  }
 `;
