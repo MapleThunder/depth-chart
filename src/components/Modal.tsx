@@ -93,6 +93,14 @@ const ModalStyles = styled.div`
     border-radius: 5px;
     box-shadow: var(--bs);
 
+    div.form-wrapper {
+      max-width: 100%;
+
+      label {
+        width: 60%;
+      }
+    }
+
     @media screen and (max-width: 900px) {
       width: 80vw;
       margin-left: -5%;
