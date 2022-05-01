@@ -105,23 +105,6 @@ export function PlayerForm({ player, mode = "add_player" }: PlayerFormInit) {
               />
             </label>
             <label>
-              Shirt Number <br />
-              <Field
-                id="kit_number"
-                type="text"
-                placeholder="7"
-                name="kit_number"
-                className={`form-control ${
-                  touched.kit_number && errors.kit_number ? "error-field" : ""
-                }`}
-              />
-              <ErrorMessage
-                component="div"
-                name="kit_number"
-                className="error-message"
-              />
-            </label>
-            <label>
               Positions <br />
               <Field
                 id="positions"
