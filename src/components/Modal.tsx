@@ -101,11 +101,6 @@ const ModalStyles = styled.div`
       }
     }
 
-    @media screen and (max-width: 900px) {
-      width: 80vw;
-      margin-left: -5%;
-    }
-
     .modal-header {
       display: flex;
       justify-content: space-between;
@@ -120,6 +115,12 @@ const ModalStyles = styled.div`
 
     .modal-body {
       margin-bottom: 15px;
+    }
+  }
+  @media screen and (max-width: 700px) {
+    .modal-content {
+      width: 80vw;
+      /* margin-left: -5%; */
     }
   }
 `;

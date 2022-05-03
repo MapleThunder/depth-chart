@@ -96,7 +96,8 @@ const ChartStyles = styled.div`
     grid-row: 6/7;
   }
 
-  @media screen and (max-width: 900px) {
-    padding: 20px 3px;
+  @media screen and (max-width: 700px) {
+    padding: 20px 0;
+    grid-gap: 2px;
   }
 `;

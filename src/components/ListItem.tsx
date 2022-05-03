@@ -44,7 +44,7 @@ export function ListItem({ player, position, index }: ListItemParams) {
               }
               className="player-selector"
             >
-              {player.name}
+              <span className="player-name">{player.name}</span>
               <AiOutlineEdit />
             </button>
           </div>
@@ -77,7 +77,7 @@ const ListItemStyles = styled.li`
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 0 5px;
+    padding: 0 0 0 5px;
     margin: 0 10px;
 
     button.player-selector {
@@ -101,9 +101,23 @@ const ListItemStyles = styled.li`
         font-size: 1.2rem;
         vertical-align: middle;
       }
-
-      @media screen and (max-width: 900px) {
+    }
+  }
+  @media screen and (max-width: 700px) {
+    .item-wrapper {
+      button.player-selector {
         font-size: 0.9rem;
+
+        span.player-name {
+          max-width: 75%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        svg.react-icon {
+          margin-left: -7px;
+        }
       }
     }
   }
