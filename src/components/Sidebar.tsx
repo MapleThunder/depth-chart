@@ -15,7 +15,8 @@ export function Sidebar() {
 }
 
 const SidebarStyles = styled.div`
-  max-height: 300px;
+  /* max-height: 300px; */
+
   .sidebar-wrapper {
     padding: 20px;
     display: flex;
@@ -25,10 +26,19 @@ const SidebarStyles = styled.div`
   background-color: var(--grey);
   border-radius: 0 0 5px 5px;
 
-  @media screen and (max-width: 600px) {
-    width: 100vw;
+  @media screen and (max-width: 700px) {
+    width: 100%;
     padding: 0;
     border-radius: 0;
+
+    .sidebar-wrapper {
+      align-items: center;
+
+      h2 {
+        width: 100%;
+        text-align: center;
+      }
+    }
   }
 
   h2 {

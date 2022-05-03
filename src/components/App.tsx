@@ -40,7 +40,7 @@ const MainStyles = styled.main`
     width: 100%;
     max-width: var(--max-width);
 
-    @media screen and (max-width: 900px) {
+    @media screen and (max-width: 700px) {
       display: flex;
       flex-direction: column;
     }
