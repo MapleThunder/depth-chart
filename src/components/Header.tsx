@@ -31,7 +31,7 @@ const HeaderStlyes = styled.header`
     }
   }
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 700px) {
     .wrapper {
       max-width: 600px;
       padding: 10px;

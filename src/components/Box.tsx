@@ -55,7 +55,7 @@ export function Box({ details }: BoxParams) {
 const BoxStyles = styled.div<StyleProps>`
   display: flex;
   flex-direction: column;
-  border: 2px solid var(--black);
+  border: 1px solid var(--black);
   border-radius: var(--br);
   box-shadow: var(--bs);
   text-align: center;
@@ -85,7 +85,8 @@ const BoxStyles = styled.div<StyleProps>`
     }
   }
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 700px) {
+    max-width: 126px;
     .box-label-wrapper {
       .box-label {
         font-size: 0.9rem;
