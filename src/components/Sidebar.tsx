@@ -24,12 +24,10 @@ const SidebarStyles = styled.div`
     margin-bottom: 10px;
   }
   background-color: var(--grey);
-  border-radius: 0 0 5px 5px;
 
   @media screen and (max-width: 700px) {
     width: 100%;
     padding: 0;
-    border-radius: 0;
 
     .sidebar-wrapper {
       align-items: center;

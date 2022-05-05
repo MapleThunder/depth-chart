@@ -15,6 +15,7 @@ export function Header() {
 const HeaderStlyes = styled.header`
   width: 100vw;
   background-color: var(--primary);
+  color: var(--text-colour-light);
   display: flex;
   justify-content: center;
 
@@ -26,6 +27,9 @@ const HeaderStlyes = styled.header`
     align-items: center;
     padding: 10px;
 
+    h1 {
+      font-weight: normal;
+    }
     button {
       vertical-align: middle;
     }

@@ -1,15 +1,11 @@
 import styled from "@emotion/styled";
 import { IconContext } from "react-icons";
-import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { DepthChart } from "./DepthChart";
 import { Header } from "./Header";
-import { GlobalContext, GlobalProvider } from "../context/GlobalState";
+import { GlobalProvider } from "../context/GlobalState";
 import { Sidebar } from "./Sidebar";
 import { Modal } from "./Modal";
-import { Player } from "../store/types";
-import { byPosition } from "../util/filters";
-import { useContext } from "react";
-import { resetWeights } from "../util/weightUtils";
+import { Footer } from "./Footer";
 
 export function App() {
   return (
@@ -22,6 +18,7 @@ export function App() {
             <DepthChart />
           </div>
         </MainStyles>
+        <Footer />
         <Modal />
       </IconContext.Provider>
     </GlobalProvider>
