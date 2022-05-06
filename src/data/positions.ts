@@ -22,33 +22,8 @@ export const positions: Array<Position> = [
     weight: 0,
   },
   {
-    label: "Left Mid",
-    value: "LMD",
-    weight: 0,
-  },
-  {
     label: "Centre Mid",
     value: "CMD",
-    weight: 0,
-  },
-  {
-    label: "Right Mid",
-    value: "RMD",
-    weight: 0,
-  },
-  {
-    label: "Left Wingback",
-    value: "LWB",
-    weight: 0,
-  },
-  {
-    label: "Defensive Mid",
-    value: "DMD",
-    weight: 0,
-  },
-  {
-    label: "Right Wingback",
-    value: "RWB",
     weight: 0,
   },
   {
