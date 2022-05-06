@@ -5,7 +5,7 @@ export function Footer() {
     <FooterStyles>
       <div className="wrapper">
         Created by&nbsp;
-        <a href="https://twitter.com/Niko_Bentley">Niko Bentley</a>
+        <a href="https://github.com/MapleThunder">Niko Bentley</a>
       </div>
     </FooterStyles>
   );
