@@ -15,7 +15,9 @@ export function Sidebar() {
 }
 
 const SidebarStyles = styled.div`
-  /* max-height: 300px; */
+  height: fit-content;
+  background-color: var(--grey);
+  border-radius: 0 0 5px 5px;
 
   .sidebar-wrapper {
     padding: 20px;
@@ -23,11 +25,11 @@ const SidebarStyles = styled.div`
     flex-direction: column;
     margin-bottom: 10px;
   }
-  background-color: var(--grey);
 
   @media screen and (max-width: 700px) {
     width: 100%;
     padding: 0;
+    border-radius: 0;
 
     .sidebar-wrapper {
       align-items: center;
