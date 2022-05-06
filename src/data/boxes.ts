@@ -42,16 +42,6 @@ export const boxes: Array<Box> = [
     },
   },
   {
-    label: "Left Mid",
-    classes: "left mid",
-    position: "LMD",
-    limits: {
-      bad: 0,
-      okay: 1,
-      good: 2,
-    },
-  },
-  {
     label: "Centre Mid",
     classes: "centre mid",
     position: "CMD",
@@ -59,46 +49,6 @@ export const boxes: Array<Box> = [
       bad: 0,
       okay: 2,
       good: 4,
-    },
-  },
-  {
-    label: "Right Mid",
-    classes: "right mid",
-    position: "RMD",
-    limits: {
-      bad: 0,
-      okay: 1,
-      good: 2,
-    },
-  },
-  {
-    label: "Left Wingback",
-    classes: "left d-mid",
-    position: "LWB",
-    limits: {
-      bad: 0,
-      okay: 1,
-      good: 2,
-    },
-  },
-  {
-    label: "Defensive Mid",
-    classes: "centre d-mid",
-    position: "DMD",
-    limits: {
-      bad: 0,
-      okay: 1,
-      good: 2,
-    },
-  },
-  {
-    label: "Right Wingback",
-    classes: "right d-mid",
-    position: "RWB",
-    limits: {
-      bad: 0,
-      okay: 1,
-      good: 2,
     },
   },
   {

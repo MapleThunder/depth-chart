@@ -59,7 +59,7 @@ export function DepthChart() {
 const ChartStyles = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(6, 1fr);
+  grid-template-rows: repeat(5, 1fr);
   grid-gap: 10px;
   max-width: 900px;
   padding: 20px 10px;
@@ -79,21 +79,22 @@ const ChartStyles = styled.div`
   }
 
   .a-mid {
-    grid-row: 2/3;
+    grid-row: 2/4;
   }
   .mid {
     grid-row: 3/4;
   }
-  .d-mid {
-    grid-row: 4/5;
-  }
   .def {
-    grid-row: 5/6;
+    grid-row: 4/5;
   }
 
   .keeper {
     grid-column: 2/3;
-    grid-row: 6/7;
+    grid-row: 5/6;
+  }
+
+  .centre.a-mid {
+    grid-row: 2/3;
   }
 
   @media screen and (max-width: 700px) {
