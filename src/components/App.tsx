@@ -32,6 +32,7 @@ const MainStyles = styled.main`
 
   .wrapper {
     display: grid;
+    height: fit-content;
     grid-template-columns: 250px auto;
     grid-gap: 10px;
     width: 100%;
