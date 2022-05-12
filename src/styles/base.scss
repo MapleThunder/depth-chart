@@ -65,6 +65,8 @@ h2 {
   min-height: 100vh;
   display: grid;
   grid-template-rows: 52px 1fr auto;
+  overflow: hidden;
+
   footer {
     grid-row: 3/4;
   }
