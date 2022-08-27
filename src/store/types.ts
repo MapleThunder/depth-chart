@@ -151,6 +151,7 @@ type Option = {
 type CustomSelectProps = {
   label: string;
   options: Array<Option>;
+  isMulti?: boolean;
 };
 
 type LinkButtonProps = {

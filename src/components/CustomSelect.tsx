@@ -3,6 +3,7 @@ import Select from "react-select";
 import { CustomSelectProps } from "../store/types";
 
 export function CustomSelect({
+  isMulti = true,
   options,
   field,
   form: { touched, errors, setFieldValue },
@@ -18,7 +19,7 @@ export function CustomSelect({
       onChange={(option) => {
         setFieldValue(field.name, option);
       }}
-      isMulti={true}
+      isMulti={isMulti}
       className={`form-control ${
         touched.positions && errors.positions ? "error-field" : ""
       }`}
