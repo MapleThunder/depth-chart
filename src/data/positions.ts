@@ -22,8 +22,18 @@ export const positions: Array<Position> = [
     weight: 0,
   },
   {
+    label: "Left Mid",
+    value: "LMD",
+    weight: 0,
+  },
+  {
     label: "Centre Mid",
     value: "CMD",
+    weight: 0,
+  },
+  {
+    label: "Right Mid",
+    value: "RMD",
     weight: 0,
   },
   {
