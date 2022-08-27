@@ -1,11 +1,13 @@
 import styled from "@emotion/styled";
 import { empty_player } from "../util/empties";
+import { FormationSelector } from "./FormationSelector";
 import { PlayerForm } from "./PlayerForm";
 
 export function Sidebar() {
   return (
     <SidebarStyles>
       <div className="sidebar-wrapper">
+        <FormationSelector />
         <h2>Add Player</h2>
         <div className="button-wrapper"></div>
         <PlayerForm player={empty_player} />
