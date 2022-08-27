@@ -6,6 +6,7 @@ import { boxes } from "../data/boxes";
 import { byPosition } from "../util/filters";
 import { resetWeights } from "../util/weightUtils";
 import { Box } from "./Box";
+import { FourFourTwo } from "./formations/FourFourTwo";
 
 export function DepthChart() {
   const { players, overwritePlayers } = useContext(GlobalContext);
@@ -49,56 +50,11 @@ export function DepthChart() {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <ChartStyles>
+      <FourFourTwo>
         {boxes && boxes.map((box, i) => <Box details={box} key={i} />)}
-      </ChartStyles>
+      </FourFourTwo>
     </DragDropContext>
   );
 }
 
-const ChartStyles = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  grid-gap: 10px;
-  max-width: 900px;
-  padding: 20px 10px;
 
-  .striker {
-    grid-column: 2/3;
-  }
-
-  .left {
-    grid-column: 1/2;
-  }
-  .centre {
-    grid-column: 2/3;
-  }
-  .right {
-    grid-column: 3/4;
-  }
-
-  .a-mid {
-    grid-row: 2/4;
-  }
-  .mid {
-    grid-row: 3/4;
-  }
-  .def {
-    grid-row: 4/5;
-  }
-
-  .keeper {
-    grid-column: 2/3;
-    grid-row: 5/6;
-  }
-
-  .centre.a-mid {
-    grid-row: 2/3;
-  }
-
-  @media screen and (max-width: 700px) {
-    padding: 20px 0;
-    grid-gap: 2px;
-  }
-`;
