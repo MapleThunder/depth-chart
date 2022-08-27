@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { ListItem } from "./ListItem";
-import { Box, BoxParams, Player } from "../store/types";
+import { BoxParams, Player } from "../store/types";
 import { Droppable } from "react-beautiful-dnd";
 import { byPosition } from "../util/filters";
 import { GlobalContext } from "../context/GlobalState";
